@@ -1,0 +1,5 @@
+fields:
+  login: varchar
+  password: varchar
+constraints:
+  id: { integer: 'true' }
