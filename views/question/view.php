@@ -17,7 +17,7 @@ if(count($answers)>0):
 	<?
 	foreach($answers as $answer):
 		?>
-		<?=$answer->content;?>
+		<?=$parser->transform($answer->content);?>
 		<?
 	endforeach;
 endif;

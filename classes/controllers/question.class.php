@@ -26,6 +26,7 @@ namespace controllers;
 			$question->save();
 			$this->add("question",$question);
 			$this->add("answers",$question->getAnswers());
+			$this->add("parser",new \libs\markdown\markdownextraparser());
 			
 			$this->render();
 		}
