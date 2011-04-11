@@ -1,0 +1,9 @@
+fields:
+  question: int
+  creationDate: datetime
+  modificationDate: datetime
+  content: text
+  user: int
+  accepted: tinyint
+constraints:
+  id: { integer: 'true' }

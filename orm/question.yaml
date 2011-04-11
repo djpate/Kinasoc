@@ -1,0 +1,8 @@
+fields:
+  creationDate: datetime
+  modificationDate: datetime
+  title: varchar
+  content: text
+  user: int
+constraints:
+  id: { integer: 'true' }
