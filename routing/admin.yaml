@@ -1,0 +1,44 @@
+admin:
+  index:
+    url: admin
+  logout:
+    url: admin/logout
+  login:
+    url: admin/login
+  autocomplete:
+    url: admin/autocomplete
+  mass:
+    url: admin/mass_operation
+  save:
+    url: admin/save
+  delete:
+    url: admin/delete
+  has_many:
+    url: admin/has_many/{object}
+    reg:
+      - ([a-zA-Z_]+)
+  category:
+    url: admin/{category}
+    reg:
+      - ([a-zA-Z_]+)
+  module:
+    url: admin/{category}/{module}
+    reg:
+      - ([a-zA-Z_]+)
+      - ([a-zA-Z_]+)
+  fiche:
+    url: admin/{category}/{module}/{id}
+    reg:
+      - ([a-zA-Z_]+)
+      - ([a-zA-Z_]+)
+      - ([0-9]+)
+  add:
+    url: admin/{category}/{module}/add
+    reg:
+      - ([a-zA-Z_]+)
+      - ([a-zA-Z_]+)
+  listing:
+    url: admin/listing/{category}/{module}
+    reg:
+      - ([a-zA-Z_]+)
+      - ([a-zA-Z_]+)

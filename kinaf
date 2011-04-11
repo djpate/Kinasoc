@@ -1,0 +1,87 @@
+#!/usr/bin/php
+<?php
+	@include('configuration/configuration.php');
+	require('classes/db.class.php');
+	require('libs/yaml/sfYamlDumper.php');
+	class Kinaf{
+		
+		private $argc,$argv,$pdo;
+		
+		public function __construct($argc,$argv){
+			$this->argc = $argc;
+			$this->argv = $argv;
+			if($argc==1){
+				$this->rtfm();
+			} elseif(method_exists($this,$argv[1])){
+				$this->$argv[1]();
+			} else {
+				$this->rtfm("Option ".$argv[1]." inconnue");
+			}
+		}
+		
+		private function generateClass(){
+			$this->pdo = db::singleton();
+			foreach($this->pdo->query("show tables") as $row){ // liste les tables
+				$table = $row[0];
+				foreach($this->pdo->query("show index from $table") as $subRow){
+					if($subRow['Column_name']=="id"){ // liste uniquement les tables qui ont un index id
+						if(!file_exists('classes/application/'.strtolower($table).".class.php")){
+							fwrite(STDOUT, "Generer la classe $table ? (Y/n) :\n");
+							$rep = fgets(STDIN);
+							if($rep=="Y\n" or $rep=="\n" or $rep == "y\n"){
+								/* on genere le yaml */
+								$yaml = array();
+								$yaml['fields'] = array();
+								$yaml['constraints'] = array();
+								$yaml['constraints']['id'] = array("integer"=>"true");
+								foreach($this->pdo->query("show columns from ".$table." where Field != 'id'") as $field){
+									$type = preg_replace("/(\([0-9]+\))/",'',$field['Type']);
+									$yaml['fields'][$field['Field']] = $type;
+								}
+								
+								$dumper = new sfYamlDumper();
+								$yaml = $dumper->dump($yaml,2);
+								file_put_contents("orm/".strtolower($table).".yaml", $yaml);
+								
+								$header = str_replace('$name',strtolower($table),file_get_contents("scripts/templates/Class/header"));
+								$footer = file_get_contents("scripts/templates/Class/footer");
+								
+								$classdef = $header.$footer;
+								
+								file_put_contents("classes/application/".strtolower($table).".class.php",$classdef);
+								
+								fwrite(STDOUT, "Voulez vous generer le controller pour la classe $table ? (Y/n) :\n");
+								$rep_controller = fgets(STDIN);
+								
+								if($rep_controller=="Y\n" or $rep_controller=="\n" or $rep_controller == "y\n"){
+									$this->generateController($table);
+								}
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		private function setup(){
+			copy(dirname(__file__).'/configuration/configuration.example.php',dirname(__file__).'/configuration/configuration.php');
+			$this->succes("Done");
+		}
+		
+		private function rtfm($err = ''){
+			if(!empty($err)){
+				echo $err."\n";
+			}
+			$readme = file_get_contents("scripts/readme");
+			echo $readme;
+		}
+		
+		private function succes($msg){
+			echo $msg."\n";
+		}
+	}
+	
+	$k = new Kinaf($argc,$argv);
+	
+?>

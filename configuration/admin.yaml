@@ -1,0 +1,11 @@
+categories:
+  backoffice:
+    title: Gestion du backoffice
+    modules:
+      administrator:
+        namespace: kinaf
+        title: Compte administrateur
+        listing:
+          - id
+          - login
+    

@@ -1,0 +1,18 @@
+Example d'utilisation de l'orm
+------------------------------
+Attention il faut indenter avec 2 espaces !
+
+fields:
+  nom: varchar
+  email: varchar
+  age: int
+  inscription: date
+  Categorie: object
+constraints:
+  nom:
+    required: true
+  email:
+    required: true
+    email: true
+has_many
+  posts: post

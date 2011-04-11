@@ -1,0 +1,273 @@
+
+body {
+	background: #121e27 url(layout/blue/body_bg.gif) 0 297px;
+}
+
+
+#wrapper {
+	background: transparent;
+}
+
+#content {
+	background:url(layout/blue/content_bg.gif) repeat-x;
+}
+
+#content .inner {
+	background:url(layout/blue/content_inner_bg.gif) no-repeat;
+}
+
+#header_main_menu {
+	background: #4bc4e7 url(layout/blue/header_main_menu.gif) repeat-x;
+}
+
+#header_main_menu_bg {
+	background-image:url(layout/blue/header_main_menu_bg.png);
+}
+
+#header {
+	padding: 13px 0 0;
+	height: 82px;
+}
+
+#logo a:link, 
+#logo a:visited, 
+#logo a:hover, 
+#logo a:active {
+	background-image:url(layout/blue/logo.png);
+}
+
+#user_details_menu {
+	color: #fff;
+}
+
+.new_messages:link, 
+.new_messages:visited, 
+.new_messages:active {
+	color: #8be5ff;
+}
+
+.new_messages:hover {
+	color: #8be5ff;
+	
+}
+
+#user_access a:link, 
+#user_access a:visited, 
+#user_access a:active {
+	color: #8be5ff;
+}
+
+#user_access a:hover {
+	color: #8be5ff;
+}
+
+#user_access li {
+	background-image:url(layout/blue/user_access_li.gif);
+}
+
+#server_details {
+	color: #b5deea;
+}
+
+#main_menu a:link, 
+#main_menu a:visited, 
+#main_menu a:active {
+	color: #383838;
+}
+
+#main_menu a:hover {
+	color: #00465a;
+}
+
+#main_menu .selected_lk:link, 
+#main_menu .selected_lk:visited, 
+#main_menu .selected_lk:hover,
+#main_menu .selected_lk:active {
+	color: #fff;
+}
+
+#main_menu .l span {
+	background-image:url(layout/blue/mm_l.png);
+}
+
+#main_menu .m span {
+	background-image:url(layout/blue/mm_m.png);
+}
+
+#main_menu .r span {
+	background-image:url(layout/blue/mm_r.png);
+}
+
+
+
+#footer  {
+	background-image:url(layout/blue/body_bottom.png);
+	padding-top: 82px;
+	margin-top: -111px;
+}
+
+
+
+
+#main_menu ul ul a:link, 
+#main_menu ul ul a:visited, 
+#main_menu ul ul a:active {
+	color: #d8f6fe;
+}
+#main_menu ul ul a:hover {
+	color: #89cbde;
+}
+
+#main_menu ul ul .selected_lk:link, 
+#main_menu ul ul .selected_lk:visited, 
+#main_menu ul ul .selected_lk:hover, 
+#main_menu ul ul .selected_lk:active {
+	color: #aeaeae;
+}
+
+#main_menu ul ul .l span {
+background-image:url(layout/blue/sm_l.png);
+}
+
+
+#main_menu ul ul .m span {
+background-image:url(layout/blue/sm_m.png);
+}
+
+#main_menu ul ul .r span {
+background-image:url(layout/blue/sm_r.png);
+}
+
+.sub_bg {
+	background-image:url(layout/blue/submenu_bg.png);
+}
+
+.title_wrapper_top {
+	background-image:url(layout/blue/section_title_top.png);
+}
+
+.title_wrapper_middle {
+	background-image:url(layout/blue/section_title_middle.png);
+}
+
+.title_wrapper_bottom {
+	background-image:url(layout/blue/section_title_bottom.png);
+}
+
+
+h2 {
+	color: #fff;
+}
+
+.section_content_top {
+	background-image:url(layout/blue/section_content_top.png);
+}
+
+.section_content_bottom {
+	background-image:url(layout/blue/section_content_bottom.png);
+}
+
+h3 {
+	color: #6082b9;
+}
+
+.lists dt {
+	color: #001444;
+}
+
+.section_menu .l span {
+	background-image:url(layout/blue/t_l.png);
+}
+
+.section_menu .m span {
+	background-image:url(layout/blue/t_m.png);
+}
+
+.section_menu .r span {
+	background-image:url(layout/blue/t_r.png);
+}
+
+.section_menu a:link, 
+.section_menu a:visited, 
+.section_menu a:active  {
+	color: #538594;
+}
+
+.section_menu a:hover {
+	color: #1e6980;
+}
+
+.section_menu .selected_lk:link, 
+.section_menu .selected_lk:visited, 
+.section_menu .selected_lk:hover, 
+.section_menu .selected_lk:active {
+	color: #646464;
+}
+
+.view_all_orders:link, 
+.view_all_orders:visited, 
+.view_all_orders:active {
+	color: #e6f9ff;
+}
+
+.view_all_orders:hover {
+	color: #e6f9ff;
+}
+
+
+.tooltip {
+	background-color: #dce5ee;
+	background-image:url(layout/blue/tooltip_middle.gif); 
+}
+
+.tooltip_bottom {
+	background-image:url(layout/blue/tooltip_bottom.gif);
+}
+
+.tooltip_top {
+	background-image:url(layout/blue/tooltip_top.gif);
+}
+
+.pointer {
+	background-image:url(layout/blue/pointer.gif);
+}
+
+.tooltip p.first {
+	background-image:url(layout/blue/arrow_indent.gif);
+}
+
+.section_nav .l span {
+	background-image:url(layout/blue/t_l2.png);
+}
+
+.section_nav .r span {
+	background-image:url(layout/blue/t_r2.png);
+}
+
+.section_nav .m span {
+	background-image:url(layout/blue/t_m2.png);
+}
+
+.section_nav a:link,
+.section_nav a:visited,
+.section_nav a:active {
+	color: #405860;
+}
+
+.section_nav a:hover {
+	color: #405860;	
+}
+
+.section_back em {
+	background-image:url(layout/blue/section_back.gif);
+}
+
+.section_edit em {
+	background-image:url(layout/blue/section_edit.gif);
+}
+
+
+
+
+
+

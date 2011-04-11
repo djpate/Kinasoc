@@ -1,0 +1,13 @@
+fields:
+  code: 
+    type: varchar
+  dateFormat: 
+    type: varchar
+  dateTimeFormat: 
+    type: varchar
+  decimalSeperator: 
+    type: varchar
+  thousandSeperator: 
+    type: varchar
+  symbolPrepend: 
+    type: tinyint

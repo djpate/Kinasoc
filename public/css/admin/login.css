@@ -1,0 +1,303 @@
+* {
+	outline: none;
+}
+
+html,body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Trebuchet Ms';
+	font-size: 12px;
+	background: #000;
+	color: #5f5f5f;
+	
+}
+
+#stripes {
+	background:url(login/aurora/body_bg.png);
+	
+}
+
+* html #stripes {
+	background: transparent;
+}
+
+#login_wrapper_bg {
+	width: 1027px;
+	height: 468px;
+	background:url(login/aurora/login_wrapper.jpg) no-repeat;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -192px 0 0 -530px;
+}
+
+#wrapper, 
+#wrapper2, 
+#wrapper3,
+#wrapper4,
+#stripes
+
+ {
+	height: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+#login_wrapper {
+	width: 334px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -37px 0 0 -167px;
+}
+
+.error {
+	position: absolute;
+	top: -32px;
+	left: 0;
+	height: 26px;
+	line-height: 26px;
+	background:url(login/error_bg.png) no-repeat;
+	width: 334px;
+	color: #b8b8b8;
+	font-size: 11px;
+	z-index: 1;
+}
+
+.error_inner {
+	padding: 0 9px 0 31px;
+	background:url(login/error_ico.png) no-repeat;
+	
+}
+
+.error strong {
+	color: #f1b500;
+	font-size: 13px;
+	padding: 0 6px 0 0;
+}
+
+.error span {
+	padding: 0 0 0 5px;
+}
+
+h1 {
+	color: #fff;
+	font-size: 28px;
+	line-height: 44px;
+	padding: 0 0 0 23px;
+	margin: 0;
+	background:url(login/h1.png) no-repeat;
+}
+
+#login_wrapper form {
+	margin: 0;
+	padding: 0;
+	width: 334px;
+	margin: 0 auto;
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+#login_wrapper fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.formular_top, .formular_bottom {
+	display: block;
+	height: 3px;
+	width: 334px;
+	overflow: hidden;
+	background:url(login/formular_top.png) no-repeat;
+}
+
+.formular_bottom  {
+	background-image:url(login/formular_bottom.png);
+	height: 2px;
+}
+
+.formular_inner {
+	background: #fff;
+	padding: 20px 29px 13px 20px;
+}
+
+.reflect {
+	display: block;
+	width: 391px;
+	height: 213px;
+	background:url(login/reflect.png) no-repeat;
+	overflow: hidden;
+	position: absolute;
+	left: -29px;
+	bottom: -72px;
+}
+
+.lock {
+	display: block;
+	width: 55px;
+	height: 65px;
+	overflow: hidden;
+	background:url(login/lock.png) no-repeat;
+	position: absolute;
+	left: 24px;
+	bottom: -24px;
+	z-index: 3;
+}
+
+.formular label {
+	width: 100%;
+	overflow: hidden;
+	display: block;
+	padding: 11px 0 0;
+}
+
+.formular label strong {
+	float: left;
+	white-space: nowrap;
+	color: #232323;
+	line-height: 23px;
+	font-size: 12px;
+	width: 65px;
+	text-align: right;
+}
+
+.input_wrapper {
+	display: block;
+	float: right;
+	background:url(login/input.gif) no-repeat;
+	height: 20px;
+	padding: 2px 8px;
+	width: 186px;
+	
+}
+
+.input_wrapper input {
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	font-family: 'Trebuchet Ms';
+	font-size: 13px;
+	color: #616060;
+	display: block;
+	width: 100%;
+	
+}
+
+input.checkbox {
+	vertical-align: middle;
+	
+}
+
+.formular label.inline {
+	width: auto;
+	margin: 0 0 0 83px;
+	padding: 4px 0 0;
+}
+
+
+
+
+.form_menu {
+	margin: 0 0 0 83px;
+	padding: 11px 0 0;
+	width: 202px;
+	overflow: hidden;
+}
+
+.form_menu li {
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0 7px 0 0;
+}
+
+
+.button input {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	width: 1000px;
+	height: 1000px;
+	position: absolute;
+	bottom: -10px;
+	right: -10px;
+	display: block;
+	cursor: pointer;
+}
+
+.button {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	background:url(login/button_middle.gif) repeat-x;
+	height: 24px;
+	line-height: 25px;
+	font-size: 16px;
+	float: left;
+}
+
+.button:hover {
+	background-position: 0 -24px;
+}
+
+.button:hover {
+	text-decoration: underline;
+}
+
+.button  span {
+	background:url(login/button_left.gif) no-repeat;
+	display: block;
+	float: left;
+	height: 24px;
+	overflow: hidden;
+}
+
+.button:hover  span {
+	background-position: 0 -24px;
+	
+}
+
+.button  span span {
+	background:url(login/button_right.gif) no-repeat right top;
+	display: block;
+	float: left;
+}
+
+.button:hover span span {
+	background-position: right -24px;
+}
+
+.button a:link,
+.button a:visited,
+.button a:active, 
+.button em {
+	float: left;
+	padding: 0 8px;
+	display: block;
+	color: #e1f0ff;
+	font-size: 14px;
+	font-style: normal;
+	text-decoration: none;
+	white-space: nowrap;
+	
+}
+
+.button a:hover, .button:hover em {
+	color: #9addff;
+}
+
+
+

@@ -1,0 +1,6 @@
+Apache2 conf
+
+<VirtualHost *:80>
+        ServerName kinaf.localhost
+        DocumentRoot /var/www/Kinaf/public
+</VirtualHost>

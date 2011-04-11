@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(css|js|images|classes|favicon.ico)($|/) - [L]
+RewriteRule	^(.*)$	index.php [QSA,L]

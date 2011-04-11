@@ -1,0 +1,63 @@
+body {
+	background: #000c16;
+	
+}
+
+
+#wrapper {
+	background:url(login/blue/wrapper_top.png) repeat-x;
+	
+	
+}
+
+#wrapper2 {
+	background:url(login/blue/wrapper_bottom.png) repeat-x left bottom;
+	
+}
+
+#wrapper3 {
+	background:url(login/blue/wrapper_top2.png) repeat-x;
+}
+
+#wrapper4 {
+	background:url(login/blue/wrapper_bottom2.png) repeat-x left bottom;
+	
+}
+
+
+
+#stripes {
+	background:url(login/blue/body_bg.png);
+	
+}
+
+* html #wrapper3 {
+	background: transparent;
+}
+
+#login_wrapper_bg {
+	display: block;
+	width: 484px;
+	height: 280px;
+	background:url(login/blue/login_wrapper_bg.jpg) no-repeat;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -242px;
+	margin-top: -126px;
+}
+
+#login_wrapper {
+	margin-top: -93px;
+} 
+
+h1 {
+	background-image:url(login/blue/h1.png);
+}
+
+.formular_top {
+	background-image:url(login/blue/formular_top.png);
+}
+
+
+

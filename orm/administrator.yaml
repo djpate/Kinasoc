@@ -1,0 +1,10 @@
+fields:
+  nom: 
+    type: varchar
+  prenom:
+    type: varchar
+  login:
+    type: varchar
+  password:
+    type: password
+namespace: kinaf
