@@ -1,9 +1,9 @@
 fields:
-  question: int
+  question: object
   creationDate: datetime
   modificationDate: datetime
   content: text
-  user: int
+  user: object
   accepted: tinyint
 constraints:
   id: { integer: 'true' }

@@ -83,6 +83,7 @@ CREATE TABLE `question` (
   `title` varchar(100) NOT NULL,
   `content` text NOT NULL,
   `user` int(11) NOT NULL,
+  `views` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -178,4 +179,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-11 12:08:09
+-- Dump completed on 2011-04-11 12:17:08

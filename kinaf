@@ -60,7 +60,7 @@
 								
 								$classdef = $header.$footer;
 								
-								file_put_contents("classes/".strtolower($table).".class.php",$classdef);
+								file_put_contents("classes/application/".strtolower($table).".class.php",$classdef);
 								
 								fwrite(STDOUT, "Voulez vous generer le controller pour la classe $table ? (Y/n) :\n");
 								$rep_controller = fgets(STDIN);

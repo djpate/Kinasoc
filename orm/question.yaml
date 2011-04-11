@@ -3,6 +3,7 @@ fields:
   modificationDate: datetime
   title: varchar
   content: text
-  user: int
+  user: object
+  views: int
 constraints:
   id: { integer: 'true' }
