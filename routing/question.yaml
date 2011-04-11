@@ -1,0 +1,10 @@
+question:
+  new:
+    url: /new
+  add:
+    url: /add
+  view:
+    url: /question/{id}/{title}.html
+    reg:
+      - ([0-9]+)
+      - .*
