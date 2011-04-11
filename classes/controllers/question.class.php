@@ -21,7 +21,12 @@ namespace controllers;
 		}
 		
 		public function viewAction($id){
-			$this->add("question",new \application\question($id));
+			$question = new \application\question($id);
+			$question->views = $question->views + 1;
+			$question->save();
+			$this->add("question",$question);
+			$this->add("answers",$question->getAnswers());
+			
 			$this->render();
 		}
 		

@@ -83,7 +83,6 @@ a:hover {
 }
 
 #logo h1 {
-	margin-left: 60px;
 	padding: 40p 0px 0px 80px;
 	letter-spacing: -1px;
 	text-transform: lowercase;
@@ -93,7 +92,7 @@ a:hover {
 
 #logo p {
 	margin: 0;
-	padding: 0px 0 0 62px;
+	padding: 0px 0 0 0px;
 	font: normal 14px Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
 	color: #FFFFFF;
@@ -395,4 +394,13 @@ a:hover {
 .question span.number{
 	font-size:25px;
 	display:block;
+}
+
+span.separator{
+	font-size:18px;
+	border-bottom:2px solid black;
+	width:100%;
+	display: block;
+	margin-bottom:10px;
+	margin-top:10px;
 }

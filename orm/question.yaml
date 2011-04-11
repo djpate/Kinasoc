@@ -1,9 +1,15 @@
 fields:
-  creationDate: datetime
-  modificationDate: datetime
-  title: varchar
-  content: text
-  user: object
-  views: int
+  creationDate: 
+    type: datetime
+  modificationDate: 
+    type: datetime
+  title: 
+    type: varchar
+  content: 
+    type: text
+  user: 
+    type: object
+  views: 
+    type: int
 constraints:
   id: { integer: 'true' }

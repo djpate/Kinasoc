@@ -21,5 +21,14 @@
 		return $d[2]."-".$d[1]."-".$d[0];
 	}
 	
+	function datetime_en_to_fr($date){
+		return date("d/m/Y G:i:s",strtotime($date));
+	}
+	
+	function datetime_fr_to_en($date){
+		$date = explode(" ",$date);
+		return date_fr_to_en($date[0])." ".$date[1];
+	}
+	
 
 ?>

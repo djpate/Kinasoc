@@ -197,7 +197,11 @@ abstract class Modele {
 			$fields = $this->orm->getFields();
 			
 			foreach($fields as $field){
+				
 				$type = $this->orm->getType($field);
+				
+				error_log($field." ----- ".$type);
+				
 				$req .= "`".$field."` = ";
 				
 				if($type=="object"&&is_object($this->$field)){

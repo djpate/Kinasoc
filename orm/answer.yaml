@@ -1,9 +1,15 @@
 fields:
-  question: object
-  creationDate: datetime
-  modificationDate: datetime
-  content: text
-  user: object
-  accepted: tinyint
+  question: 
+    type:  object
+  creationDate:
+    type: datetime
+  modificationDate: 
+    type: datetime
+  content: 
+    type: text
+  user: 
+    type: object
+  accepted:
+    type: tinyint
 constraints:
   id: { integer: 'true' }

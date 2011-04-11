@@ -1,4 +1,5 @@
 fields:
-  label: varchar
+  label: 
+    type: varchar
 constraints:
   id: { integer: 'true' }
