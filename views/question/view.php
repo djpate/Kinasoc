@@ -107,6 +107,7 @@
 			$(this).parent().parent().addClass("accepted");
 			$(this).attr('src','/images/accepted.png');
 		}
+		$.post("<?=\kinaf\routes::url_to("question","accept_answer");?>",{'id':$(this).attr('rel')});
 	});
 	
 <? else: ?>

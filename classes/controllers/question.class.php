@@ -118,6 +118,20 @@ use \application\answer as answer;
 			endif;
 		}
 		
+		public function accept_answerAction(){
+			$a = new answer($_REQUEST['id']);
+			if ( $this->connected ):
+				if ( $a->question->user == $this->connected_user ):
+					$a->toggleAccepted();
+					echo "ok";
+				else:
+					echo "err_2"; // not the owner of the question
+				endif;
+			else:
+				echo "err_1"; // not connected
+			endif;
+		}
+		
 	} 
 
 ?>

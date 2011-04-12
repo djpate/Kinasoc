@@ -17,6 +17,8 @@ question:
       - ([0-9]+)
   vote_answer:
     url: /question/vote-answer
+  accept_answer:
+    url: /question/accept-answer
   view:
     url: /question/{id}/{title}.html
     reg:
