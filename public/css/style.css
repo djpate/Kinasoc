@@ -450,12 +450,6 @@ span.separator{
 	height: 200px;
 }
 
-.answer_form iframe{
-	width:649px;
-	border:1px solid #EFEFEF;
-	height: 200px;
-}
-
 .answer_vote {
 	float:left;
 	width:24px;

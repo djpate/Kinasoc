@@ -120,9 +120,15 @@ function reloadAnswers(){
 
 reloadAnswers();
 
+$("textarea").wysiwyg({
+	initialContent: "",
+	autoGrow: true
+});
+
 $(".primaryAction").click(function(){
 	$.post("<?=\kinaf\routes::url_to("question","new_answer",$question);?>",$(".answer_form").serialize(),function(data){
 		if(data == "ok"){
+			$(".answer_form")[0].reset();
 			reloadAnswers();
 		} else {
 			switch(data){
