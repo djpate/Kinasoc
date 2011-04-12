@@ -3,5 +3,7 @@ fields:
     type: varchar
   password: 
     type: varchar
+  email:
+    type: varchar
 constraints:
   id: { integer: 'true' }

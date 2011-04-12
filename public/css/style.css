@@ -415,6 +415,21 @@ span.separator{
 	font-size:18px;
 }
 
+.user_bar_info{
+	float:right;
+	color:#000;
+}
+
+.user_bar_info .img{
+	float:left;
+	margin-right: 10px;
+}
+
+.user_bar_info .user{
+	float: left;
+	color: #339CCB;
+}
+
 .question_view .title{
 	float:left;
 }
@@ -426,4 +441,29 @@ span.separator{
 
 .link{
 	cursor:pointer;
+}
+
+.answer_form textarea{
+	width:639px;
+	border:1px solid #EFEFEF;
+	height: 200px;
+}
+
+.answer_form iframe{
+	width:649px;
+	border:1px solid #EFEFEF;
+	height: 200px;
+}
+
+.answer_vote {
+	float:left;
+	width:24px;
+	font-size: 24px;
+	text-align:center;
+}
+
+.answer_content {
+	float:left;
+	margin-left: 15px;
+	width: 600px;
 }

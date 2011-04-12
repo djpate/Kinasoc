@@ -18,35 +18,35 @@
 	
 	<div class="content">
 	
-		<?=$question->content;?>
+		<?=$parser->transform($question->content);?>
 		
 	</div>
-
+	
+	<span class="user_bar_info">
+		<div class="img">
+			<img src="<?=$question->user->get_gravatar("30");?>" />
+		</div>
+		<div class="user">
+			<?=$question->user;?><br />
+			<?=$question->user->getPoints();?>
+		</div>
+	</span>
+	
+	<div style="clear:both"></div>
+	
 </div>
 
-<?
-if(count($answers)>0):
-	?>
-	<span class="separator"><?=sprintf(ngettext("1 réponse","%s réponses",count($answers)),count($answers));?></span>
-	<?
-	foreach($answers as $answer):
-		?>
-		<?=$parser->transform($answer->content);?>
-		<?
-	endforeach;
-endif;
-?>
-
+<div class="answer_container">
+	
+</div>
 
 <? if(!$question->isAnswered()): ?>
 
 <span class="separator"><?=_("Ajouter votre réponse");?></span>
 
-<form class="uniForm">
-	<fieldset>
-		<textarea style="width:99%"></textarea>
-		<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
-	</fieldset>
+<form class="answer_form" onsubmit="return false">
+	<textarea name="answer_content"></textarea>
+	<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
 </form>
 
 <? endif; ?>
@@ -60,7 +60,7 @@ endif;
 			} else {
 				switch(data){
 					case 'err_1':
-						var msg = "<?=_("Vous n'êtes pas connecté");?>";
+						var msg = "<?=_("Vous devez être connecté pour voter pour une question");?>";
 					break;
 					case 'err_2':
 						var msg = "<?=_("Vous ne pouvez pas voter pour votre propre question");?>";
@@ -73,7 +73,54 @@ endif;
 			}
 		})
 	});
+	
+	$(".answerVote").live('click',function(){
+		$.post("<?=\kinaf\routes::url_to("question","vote_answer");?>",{"id":$(this).attr('id'),"type":$(this).attr('rel')},function(data){
+			if(data=="ok"){
+				
+			} else {
+				switch(data){
+					case 'err_1':
+						var msg = "<?=_("Vous devez être connecté pour voter pour une réponse");?>";
+					break;
+					case 'err_2':
+						var msg = "<?=_("Vous ne pouvez pas voter pour votre propre réponse");?>";
+					break;
+					case 'err_3':
+						var msg = "<?=_("Vous avez déjà voté pour cette réponse");?>";
+					break;
+				}
+				displayError(msg);
+			}
+		});
+	});
+	
 <? else: ?>
 
 <? endif; ?>
+$('textarea').markItUp(myMarkdownSettings);
+
+function reloadAnswers(){
+	$(".answer_container").load("<?=\kinaf\routes::url_to("question","answers",$question);?>");
+}
+
+reloadAnswers();
+
+$(".primaryAction").click(function(){
+	$.post("<?=\kinaf\routes::url_to("question","new_answer",$question);?>",$(".answer_form").serialize(),function(data){
+		if(data == "ok"){
+			reloadAnswers();
+		} else {
+			switch(data){
+				case 'err_1':
+					var msg = "<?=_("Votre réponse est trop courte");?>";
+				break;
+				case 'err_1':
+					var msg = "<?=_("Votre devez être connecté pour proposer une réponse");?>";
+				break;
+			}
+			displayError(msg);
+		}
+	})
+});
 </script>

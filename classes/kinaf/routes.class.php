@@ -76,7 +76,7 @@ namespace kinaf;
 				return $url;
 				
 			} else{
-				return "/".$routes[$controller][$action]['url'];
+				return $routes[$controller][$action]['url'];
 			}
 			
 		}
