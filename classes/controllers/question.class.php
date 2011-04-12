@@ -29,7 +29,6 @@ use \application\answer as answer;
 			$question->save();
 			$this->add("question",$question);
 			$this->add("answers",$question->getAnswers());
-			$this->add("parser",new \libs\markdown\markdownextraparser());
 			
 			$this->render();
 		}
@@ -66,7 +65,6 @@ use \application\answer as answer;
 		public function answersAction($id){
 			$question = new \application\question($id);
 			$this->add("answers",$question->getAnswers());
-			$this->add("parser",new \libs\markdown\markdownextraparser());
 			$this->render("ajax");
 		}
 		

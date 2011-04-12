@@ -18,7 +18,7 @@
 	
 	<div class="content">
 	
-		<?=$parser->transform($question->content);?>
+		<?=$question->content;?>
 		
 	</div>
 	

@@ -27,7 +27,7 @@ if(count($answers)>0):
 				<img src="/images/thumbs_down.png" class="link answerVote" rel="down" id="<?=$answer->id;?>" />
 			</div>
 			<div class="answer_content">
-				<?=$parser->transform($answer->content);?>
+				<?=$answer->content;?>
 			</div>
 			<div style="clear:both"></div>
 			<span class="user_bar_info">
