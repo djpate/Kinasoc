@@ -38,18 +38,19 @@ use \application\answer as answer;
 			$question = new \application\question($id);
 			if($this->connected):
 				if($question->user != $this->connected_user):
-					if(!$question->didHeVote($this->connected_user)):
-						switch($_REQUEST['type']){
-							case 'up':
-								$question->vote($this->connected_user,1);
-							break;
-							case 'down':
-								$question->vote($this->connected_user,-1);
-							break;
-							default:
-								throw new Exception("Vote was forged");
-							break;
-						}
+					switch($_REQUEST['type']){
+						case 'up':
+							$value = 1;
+						break;
+						case 'down':
+							$value = -1;
+						break;
+						default:
+							throw new Exception("Vote was forged");
+						break;
+					}
+					if(!$question->didHeVote($this->connected_user,$value)):
+						$question->vote($this->connected_user,$value);
 						echo $question->getVote();
 					else:
 						echo "err_3"; // allready voted

@@ -13,7 +13,7 @@
 		
 		public function vote(User $u,$value){
 			if($this->hasVoted($u)):
-				$this->pdo->exec("delete from ".static::$table."_vote where user = ".$u->id);
+				$this->pdo->exec("delete from ".static::$table."_vote where ".static::$table." = ".$this->id." user = ".$u->id);
 			else:
 				if($value == "1" or $value == "-1"):
 					$this->pdo->exec("insert into ".static::$table."_vote (".static::$table.",user,value,date)
