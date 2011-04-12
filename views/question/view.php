@@ -113,7 +113,6 @@
 <? else: ?>
 
 <? endif; ?>
-$('textarea').markItUp(myMarkdownSettings);
 
 function reloadAnswers(){
 	$(".answer_container").load("<?=\kinaf\routes::url_to("question","answers",$question);?>");
