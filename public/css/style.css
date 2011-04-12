@@ -428,6 +428,7 @@ span.separator{
 .user_bar_info .user{
 	float: left;
 	color: #339CCB;
+	margin-right: 10px;
 }
 
 .question_view .title{
@@ -460,10 +461,15 @@ span.separator{
 	width:24px;
 	font-size: 24px;
 	text-align:center;
+	padding: 5px;
 }
 
 .answer_content {
 	float:left;
 	margin-left: 15px;
 	width: 600px;
+}
+
+.accepted {
+	background-color: #FFF7C0;
 }

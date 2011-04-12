@@ -72,7 +72,7 @@ use \application\answer as answer;
 		
 		public function new_answerAction($id){
 			$question = new \application\question($id);
-			if( strlen($_REQUEST['answer_content']) > 50 ): // TODO should be a variable
+			if( strlen($_REQUEST['answer_content']) > 40 ): // TODO should be a variable
 				if( $this->connected ):
 					$a = new answer();
 					$a->question = $question;

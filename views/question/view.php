@@ -96,6 +96,19 @@
 		});
 	});
 	
+	$(".accept").live('click',function(){
+		if($(this).parent().parent().hasClass("accepted")){
+			//allready accepted so we choose to un-accept it
+			$(this).parent().parent().removeClass("accepted");
+			$(this).attr('src','/images/not_accepted.png');
+		} else {
+			$(".accept").attr('src','/images/not_accepted.png');
+			$(".accepted").removeClass("accepted");
+			$(this).parent().parent().addClass("accepted");
+			$(this).attr('src','/images/accepted.png');
+		}
+	});
+	
 <? else: ?>
 
 <? endif; ?>
@@ -124,4 +137,6 @@ $(".primaryAction").click(function(){
 		}
 	})
 });
+
+
 </script>
