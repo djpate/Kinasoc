@@ -3,6 +3,14 @@ question:
     url: /new
   add:
     url: /add
+  vote:
+    url: /question/vote-{id}.html
+    reg:
+      - ([0-9]+)
+  current_vote:
+    url: /question/current-vote-{id}.html
+    reg:
+      - ([0-9]+)
   view:
     url: /question/{id}/{title}.html
     reg:

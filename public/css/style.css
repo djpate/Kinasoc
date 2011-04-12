@@ -398,9 +398,32 @@ a:hover {
 
 span.separator{
 	font-size:18px;
-	border-bottom:2px solid black;
+	border-bottom:2px solid #EFEFEF;
 	width:100%;
 	display: block;
 	margin-bottom:10px;
 	margin-top:10px;
+}
+
+.question_view .vote{
+	float:left;
+	font-size:25px;
+	margin-right:5px;
+}
+
+.question_view h1{
+	font-size:18px;
+}
+
+.question_view .title{
+	float:left;
+}
+
+.question_view .content{
+	font-size: 13px;
+	color: #787878;
+}
+
+.link{
+	cursor:pointer;
 }

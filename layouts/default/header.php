@@ -15,12 +15,14 @@ Released   : 20100529
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Regeneracy    by Free CSS Templates</title>
+	<title>Kinasoc</title>
 	<link href="/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/uni-form/uni-form.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/uni-form/default.uni-form.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/css/jquery.showMessage.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/uni-form-validation.jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.showMessage.min.js"></script>
 	<script type="text/javascript" src="/js/kinasoc.js"></script>
 </head>
 <body>

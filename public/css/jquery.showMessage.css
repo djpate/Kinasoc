@@ -1,0 +1,24 @@
+.notification
+{
+	font-family: Arial, Helvetica, clean, sans-serif;
+	font-size: large;
+	font-weight: bold;
+	background-color: rgb(247, 247, 247);
+	color: red;
+}
+.success
+{
+	font-family: Arial, Helvetica, clean, sans-serif;
+	font-size: large;
+	font-weight: bold;
+	background-color: #acfa58;
+	color: black;
+}
+.fail
+{
+	font-family: Arial, Helvetica, clean, sans-serif;
+	font-size: large;
+	font-weight: bold;
+	background-color: #fe2e2e;
+	color: white;
+}
