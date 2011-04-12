@@ -55,8 +55,8 @@
 <? if($connected): ?>
 	$(".questionVote").click(function(){
 		$.post("<?=\kinaf\routes::url_to("question","vote",$question);?>",{"type":$(this).attr('rel')},function(data){
-			if(data=="ok"){
-				$("#question_vote_value").load("<?=\kinaf\routes::url_to("question","current_vote",$question);?>");
+			if(is_int(data)){
+				$("#question_vote_value").html(data);
 			} else {
 				switch(data){
 					case 'err_1':
@@ -75,9 +75,10 @@
 	});
 	
 	$(".answerVote").live('click',function(){
+		zhis = $(this);
 		$.post("<?=\kinaf\routes::url_to("question","vote_answer");?>",{"id":$(this).attr('id'),"type":$(this).attr('rel')},function(data){
-			if(data=="ok"){
-				
+			if(is_int(data)){
+				$("#answer_count_"+zhis.attr('id')).html(data);
 			} else {
 				switch(data){
 					case 'err_1':

@@ -7,10 +7,6 @@ question:
     url: /question/vote-{id}.html
     reg:
       - ([0-9]+)
-  current_vote:
-    url: /question/current-vote-{id}.html
-    reg:
-      - ([0-9]+)
   answers:
     url: /question/answers-{id}.html
     reg:

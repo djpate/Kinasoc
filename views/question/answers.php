@@ -8,13 +8,16 @@ if(count($answers)>0):
 		<div class="answer_vote">
 			<img src="/images/thumbs_up.png" class="link answerVote" rel="up" id="<?=$answer->id;?>" />
 			<br />
-			<?=$answer->getVote();?>
+			<span id="answer_count_<?=$answer->id;?>">
+				<?=$answer->getVote();?>
+			</span>
 			<br />
 			<img src="/images/thumbs_down.png" class="link answerVote" rel="down" id="<?=$answer->id;?>" />
 		</div>
 		<div class="answer_content">
 			<?=$parser->transform($answer->content);?>
 		</div>
+		<div style="clear:both"></div>
 		<span class="user_bar_info">
 			<div class="img">
 				<img src="<?=$answer->user->get_gravatar("30");?>" />

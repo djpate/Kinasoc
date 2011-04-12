@@ -7,6 +7,11 @@ function displayError(msg){
 	});
 }
 
+function is_int(input){
+	return !isNaN(input)&&parseInt(input)==input;
+}
+
+
 $(document).ready(function(){
    $('form').uniform();
 });

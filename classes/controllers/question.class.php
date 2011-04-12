@@ -50,7 +50,7 @@ use \application\answer as answer;
 								throw new Exception("Vote was forged");
 							break;
 						}
-						echo "ok";
+						echo $question->getVote();
 					else:
 						echo "err_3"; // allready voted
 					endif;
@@ -60,11 +60,6 @@ use \application\answer as answer;
 			else:
 				echo "err_1"; // not connected
 			endif;
-		}
-		
-		public function current_voteAction($id){
-			$question = new \application\question($id);
-			echo $question->getVote();
 		}
 		
 		public function answersAction($id){
@@ -110,7 +105,7 @@ use \application\answer as answer;
 					}
 					if(!$a->didHeVote($this->connected_user,$value)):
 						$a->vote($this->connected_user,$value);
-						echo "ok";
+						echo $a->getVote();
 					else:
 						echo "err_3"; // allready voted this value
 					endif;
