@@ -1,0 +1,7 @@
+minQuestionTitle: 20
+minQuestionContent: 50
+minTagsPerQuestion: 1
+maxTagsPerQuestion: 5
+minAnswerTitle: 50
+minAnswerContent: 50
+canCreateTags: 'false'

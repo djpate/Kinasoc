@@ -20,12 +20,17 @@ Released   : 20100529
 	<link href="/css/uni-form/uni-form.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/uni-form/default.uni-form.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/jquery.showMessage.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/css/tag-it.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/jquery.wysiwyg.css" rel="stylesheet" type="text/css" media="screen" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/uni-form.jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.showMessage.min.js"></script>
 	<script type="text/javascript" src="/js/kinasoc.js"></script>
 	<script type="text/javascript" src="/js/jquery.wysiwyg.js"></script>
+	<script type="text/javascript" src="/js/jquery.validate.pack.js"></script>
+	<script type="text/javascript" src="/js/tag-it.js"></script>
 </head>
 <body>
 <div id="wrapper">

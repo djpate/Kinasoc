@@ -32,6 +32,12 @@
 			return $this->creationDate;
 		}
 		
+		public function addTags($tags){
+			foreach($tags as $tag){
+				$this->pdo->exec("insert into question_tag (question,tag) values (".$this->id.",".$tag->id.")");
+			}
+		}
+		
 		
 		
 	}

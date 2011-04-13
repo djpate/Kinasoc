@@ -467,3 +467,20 @@ span.separator{
 .accepted {
 	background-color: #FFF7C0;
 }
+
+.forceLeftDiv div{
+	float: left;
+}
+
+input.error{
+	border:1px solid red !important;
+}
+
+input.valid{
+	border:1px solid #FFF7C0 !important;
+}
+
+label.error{
+	color:red;
+	width:100%!important;
+}
