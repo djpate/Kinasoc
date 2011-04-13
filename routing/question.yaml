@@ -3,6 +3,10 @@ question:
     url: /new
   add:
     url: /add
+  delete:
+    url: /question/delete/{id}
+    reg:
+      - ([0-9]+)
   vote:
     url: /question/vote-{id}.html
     reg:

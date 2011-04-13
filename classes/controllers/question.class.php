@@ -170,6 +170,20 @@ use \application\tag as tag;
 			endif;
 		}
 		
+		public function deleteAction($id){
+			$q = new \application\question($id);
+			if( $this->connected ):
+				if ( $this->connected_user == $q->user ):
+					$q->delete();
+				else:
+					header('HTTP/1.1 403 Forbidden');
+				endif;
+			else:
+				header('HTTP/1.1 403 Forbidden');
+				exit;
+			endif;
+		}
+		
 	} 
 
 ?>

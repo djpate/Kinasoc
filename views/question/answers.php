@@ -26,7 +26,7 @@ if(count($answers)>0):
 				<br />
 				<img src="/images/thumbs_down.png" class="link answerVote" rel="down" id="<?=$answer->id;?>" />
 			</div>
-			<div class="answer_content">
+			<div class="answer_content deletable">
 				<?=$answer->content;?>
 			</div>
 			<div style="clear:both"></div>
@@ -44,7 +44,7 @@ if(count($answers)>0):
 			<?
 			foreach($answer->getComments() as $comment):
 				?>
-				<div class="comment">
+				<div class="comment deletable">
 					<span>
 						<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
 					</span>

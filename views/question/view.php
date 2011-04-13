@@ -8,7 +8,7 @@
 		<img src="/images/thumbs_down.png" class="link questionVote" rel="down"/>
 	</div>
 	
-	<div class="title">
+	<div class="title deletable">
 		<h1><?=$question->title;?></h1>
 	</div>
 	
@@ -39,7 +39,7 @@
 	<?
 		foreach($question->getComments() as $comment):
 			?>
-			<div class="comment">
+			<div class="comment deletable">
 				<span>
 					<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
 				</span>
@@ -180,6 +180,18 @@ $(".primaryAction").click(function(){
 $(".ask_add").live('click',function(){
 	$(this).hide();
 	$("#"+$(this).attr('rel')).slideDown();
+});
+
+$(".deletable").live('click',function(){
+	if($(this).hasClass("title")){ // question
+		$.post("<?=\kinaf\routes::url_to("question","delete",$question);?>",function(data){
+			location.href = "/";
+		});
+	} else if($(this).hasClass("answer_content")){ // answer
+		reloadAnswers();
+	} else { // comment
+		$(this).remove();
+	}
 });
 
 </script>

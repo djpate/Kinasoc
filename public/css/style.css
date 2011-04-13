@@ -456,6 +456,7 @@ span.separator{
 
 .question_view .title{
 	float:left;
+	width: 569px;
 }
 
 .question_view .content{
@@ -549,4 +550,10 @@ span.tag{
 
 .commentform{
 	display:none;
+}
+
+.deletable:hover {
+	background-image: url(../images/delete.png);
+	background-repeat: no-repeat;
+	background-position: top right; 
 }
