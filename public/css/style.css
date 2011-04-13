@@ -378,6 +378,7 @@ a:hover {
 
 .question h1 {
 	font-size:18px;
+	margin-bottom: 10px;
 }
 
 .question div{
@@ -386,9 +387,27 @@ a:hover {
 
 .question .votes, .question .answers, .question .views{
 	float:left;
-	width:60px;
+	width:55px;
 	text-align:center;
 	vertical-align:middle;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	font-size: 10px;
+	margin-right:5px;
+	color: #fff;
+}
+
+.question .votes{
+	background-color: #2AA1CC;
+}
+
+.question .answers{
+	background-color: #FFF7C0;
+	color: #339CCB;
+}
+
+.question .views{
+	background-color: #1582AB;
 }
 
 .question span.number{
@@ -483,4 +502,15 @@ input.valid{
 label.error{
 	color:red;
 	width:100%!important;
+}
+
+span.tag{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px !important;
+	display: inline !important;
+	font-size: 12px !important;
+	font-style: normal !important;
+	background-color: #42AEC2;
+	color: #fff;
 }

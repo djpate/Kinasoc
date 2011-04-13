@@ -10,6 +10,14 @@
 		}
 		
 		public function getTags(){
+			$ret = array();
+			$q = $this->pdo->query("select tag from question_tag where question = ".$this->id);
+			if($q->rowCount()>0){
+				foreach($q as $row){
+					array_push($ret,new tag($row['tag']));
+				}
+			}
+			return $ret;
 		}
 		
 		public function getAnswers(){

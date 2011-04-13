@@ -7,7 +7,7 @@ foreach($questions as $question):
 				<?=$question->getVote();?>
 			</span>
 			<span class="label">
-				<?=_("Votes");?>
+				<?=ngettext("Vote","Votes",$question->getVote());?>
 			</span>
 		</div>
 		
@@ -16,7 +16,7 @@ foreach($questions as $question):
 				<?=$question->getNbAnswers();?>
 			</span>
 			<span class="label">
-				<?=_("Answers");?>
+				<?=ngettext("Réponse","Réponses",$question->getNbAnswers());?>
 			</span>
 		</div>
 		
@@ -25,12 +25,21 @@ foreach($questions as $question):
 				<?=$question->views;?>
 			</span>
 			<span class="label">
-				<?=_("Views");?>
+				<?=ngettext("Vue","Vues",$question->views);?>
 			</span>
 		</div>
 		
 		<div class="right_container">
 			<h1><a href="<?=\kinaf\routes::url_to("question","view",$question);?>"><?=$question->title;?></a></h1>
+			<span class="tags">
+				<?
+				foreach($question->getTags() as $tag):
+					?>
+					<a href="<?=\kinaf\routes::url_to("tags","filter",$tag);?>"><span class="tag"><?=$tag;?></span></a>
+					<?
+				endforeach;
+				?>
+			</span>
 		</div>
 	</div>
 	<?

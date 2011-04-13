@@ -26,7 +26,7 @@
 								<?
 								foreach($popularTags as $tag):
 									?>
-										<li><a href="<?=\kinaf\routes::url_to("tags","filter",$tag);?>"><?=$tag;?></a> x <?=$tag->used();?></li>
+										<li><a href="<?=\kinaf\routes::url_to("tags","filter",$tag);?>"><span class="tag"><?=$tag;?></span></a> x <?=$tag->used();?></li>
 									<?
 								endforeach;
 								?>
