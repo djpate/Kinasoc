@@ -31,13 +31,6 @@ if(count($answers)>0):
 			</div>
 			<div style="clear:both"></div>
 			<span class="user_bar_info">
-				<div class="action">
-					<ul>
-						<li><?=_("Commenter");?></li>
-						<li><?=_("Modifier");?></li>
-						<li><?=_("Supprimer");?></li>
-					</ul>
-				</div>
 				<div class="img">
 					<img src="<?=$answer->user->get_gravatar("30");?>" />
 				</div>
@@ -47,9 +40,53 @@ if(count($answers)>0):
 				</div>
 			</span>
 			<div style="clear:both"></div>
+			
+			<?
+			foreach($answer->getComments() as $comment):
+				?>
+				<div class="comment">
+					<span>
+						<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
+					</span>
+				</div>
+				<?
+			endforeach;
+			?>
+			
+			<div class="comment">
+				<form class="commentform" onsubmit="return false">
+					<input type="hidden" name="answer" value="<?=$answer->id?>" />
+					<input type="hidden" name="type" value="answer" />
+					<span class="link bold">
+						<?=_("Ajouter un commentaire");?>
+					</span>
+					<div style="width:80%;float:left">
+						<textarea name="content" class="required" minlength="<?=$params['minComment'];?>"></textarea>
+					</div>
+					<div style="width:20%;float:left;">
+						<div style="padding-left:10px">
+							<input type="submit" value="Ajouter">
+						</div>
+					</div>
+					<div style="clear:both"></div>
+				</form>
+			</div>
+			
 			<span class="separator"></span>
 		</div>
 		<?
 	endforeach;
 endif;
 ?>
+<script>
+	$(".commentform").validate({
+		submitHandler: function(form){
+			$.post("<?=\kinaf\routes::url_to("comments","add");?>",$(form).serialize(),function(data){
+				if(data == "ok"){
+					$("<div class='comment'><span>"+$(form).find("textarea").val()+" - <span class='user'><?=$connected_user->login;?></span></span></div>").insertBefore($(form).parent()).effect("highlight", {}, 3000);
+					form.reset();
+				}
+			});
+		}
+	});
+</script>

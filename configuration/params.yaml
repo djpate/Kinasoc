@@ -4,4 +4,5 @@ minTagsPerQuestion: 1
 maxTagsPerQuestion: 5
 minAnswerTitle: 50
 minAnswerContent: 50
+minComment: 10
 canCreateTags: 'false'

@@ -27,5 +27,18 @@
 			endif;
 		}
 		
+		public function getComments(){
+			$ret = array();
+			
+			$q = $this->pdo->query("select id from answer_comment where answer = ".$this->id." order by creationDate asc");
+			if($q->rowCount()>0):
+				foreach($q as $row):
+					array_push($ret,new answer_comment($row['id']));
+				endforeach;
+			endif;
+			
+			return $ret;
+		}
+		
 	}
 ?>

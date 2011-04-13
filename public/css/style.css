@@ -434,6 +434,10 @@ span.separator{
 	font-size:18px;
 }
 
+.question_view .content{
+	margin-bottom: 10px;
+}
+
 .user_bar_info{
 	float:right;
 	color:#000;
@@ -513,4 +517,32 @@ span.tag{
 	font-style: normal !important;
 	background-color: #42AEC2;
 	color: #fff;
+}
+
+.comment {
+	padding-left: 50px;
+}
+
+.comment span{
+	border-top:1px dotted #EFEFEF;
+	display:block;
+	padding: 4px;
+}
+
+.comment span.user{
+	display:inline;
+	color: #339CCB;
+}
+
+.comment textarea{
+	width: 100%;
+	border:1px solid #EFEFEF;
+}
+
+.comment input{
+	border:1px solid #EFEFEF;
+}
+
+.bold {
+	font-weight: bold;
 }

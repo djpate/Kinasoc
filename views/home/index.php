@@ -40,6 +40,13 @@ foreach($questions as $question):
 				endforeach;
 				?>
 			</span>
+			<span style="float:right;margin-top:-11px;">
+				<?=$question->user->login;?><br />
+				<?=$question->user->getPoints()?><br />
+			</span>
+			<span style="float:right;margin-top:-11px;margin-right:10px;">
+				<img src="<?=$question->user->get_gravatar("30");?>" />
+			</span>
 		</div>
 	</div>
 	<?

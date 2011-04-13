@@ -22,6 +22,8 @@
 		
 	</div>
 	
+	<div style="clear:both"></div>
+	
 	<span class="user_bar_info">
 		<div class="img">
 			<img src="<?=$question->user->get_gravatar("30");?>" />
@@ -143,6 +145,5 @@ $(".primaryAction").click(function(){
 		}
 	})
 });
-
 
 </script>

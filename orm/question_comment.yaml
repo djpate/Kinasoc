@@ -1,0 +1,13 @@
+fields:
+  user: 
+    type: object
+  question: 
+    type: object
+  creationDate: 
+    type: datetime
+  modificationDate: 
+    type: datetime
+  content: 
+    type: text
+constraints:
+  id: { integer: 'true' }
