@@ -57,15 +57,12 @@ if(count($answers)>0):
 				<form class="commentform" onsubmit="return false">
 					<input type="hidden" name="answer" value="<?=$answer->id?>" />
 					<input type="hidden" name="type" value="answer" />
-					<span class="link bold">
-						<?=_("Ajouter un commentaire");?>
-					</span>
 					<div style="width:80%;float:left">
 						<textarea name="content" class="required" minlength="<?=$params['minComment'];?>"></textarea>
 					</div>
 					<div style="width:20%;float:left;">
 						<div style="padding-left:10px">
-							<input type="submit" value="Ajouter">
+							<input type="submit" value="<?=_("Commenter");?>">
 						</div>
 					</div>
 					<div style="clear:both"></div>

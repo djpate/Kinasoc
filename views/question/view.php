@@ -36,6 +36,34 @@
 	
 	<div style="clear:both"></div>
 	
+	<?
+		foreach($question->getComments() as $comment):
+			?>
+			<div class="comment">
+				<span>
+					<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
+				</span>
+			</div>
+			<?
+		endforeach;
+	?>
+	
+	<div class="comment">
+		<form class="commentform" onsubmit="return false">
+			<input type="hidden" name="question" value="<?=$question->id?>" />
+			<input type="hidden" name="type" value="question" />
+			<div style="width:80%;float:left">
+				<textarea name="content" class="required" minlength="<?=$params['minComment'];?>"></textarea>
+			</div>
+			<div style="width:20%;float:left;">
+				<div style="padding-left:10px">
+					<input type="submit" value="<?=_("Commenter");?>">
+				</div>
+			</div>
+			<div style="clear:both"></div>
+		</form>
+	</div>
+	
 </div>
 
 <div class="answer_container">
@@ -47,7 +75,7 @@
 <span class="separator"><?=_("Ajouter votre réponse");?></span>
 
 <form class="answer_form" onsubmit="return false">
-	<textarea name="answer_content"></textarea>
+	<textarea id="answer_content" name="answer_content"></textarea>
 	<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
 </form>
 
@@ -122,7 +150,7 @@ function reloadAnswers(){
 
 reloadAnswers();
 
-$("textarea").wysiwyg({
+$("#answer_content").wysiwyg({
 	initialContent: "",
 	autoGrow: true
 });

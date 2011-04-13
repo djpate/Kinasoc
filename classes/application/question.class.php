@@ -46,6 +46,19 @@
 			}
 		}
 		
+		public function getComments(){
+			$ret = array();
+			
+			$q = $this->pdo->query("select id from question_comment where question = ".$this->id." order by creationDate asc");
+			if($q->rowCount()>0):
+				foreach($q as $row):
+					array_push($ret,new question_comment($row['id']));
+				endforeach;
+			endif;
+			
+			return $ret;
+		}
+		
 		
 		
 	}
