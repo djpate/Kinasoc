@@ -522,6 +522,7 @@ span.tag{
 
 .comment {
 	padding-left: 50px;
+	min-height: 30px;
 }
 
 .comment span{
@@ -552,8 +553,21 @@ span.tag{
 	display:none;
 }
 
-.deletable:hover {
+.deletable {
+	position:relative;
+}
+
+.deletable_handle {
+	width:   24px;
+	height:  24px;
+	cursor:  pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none!important;
+	padding:0!important;
 	background-image: url(../images/delete.png);
 	background-repeat: no-repeat;
-	background-position: top right; 
+	background-position: right center;
+	border-top:0 !important;
 }

@@ -1,5 +1,5 @@
-<div class="question_view">
-
+<div class="question_view deletable">
+<span class="deletable_handle"></span>
 	<div class="vote">
 		<img src="/images/thumbs_up.png" class="link questionVote" rel="up"/>
 		<span id="question_vote_value">
@@ -8,7 +8,7 @@
 		<img src="/images/thumbs_down.png" class="link questionVote" rel="down"/>
 	</div>
 	
-	<div class="title deletable">
+	<div class="title">
 		<h1><?=$question->title;?></h1>
 	</div>
 	
@@ -39,9 +39,10 @@
 	<?
 		foreach($question->getComments() as $comment):
 			?>
-			<div class="comment deletable">
-				<span>
+			<div class="comment">
+				<span class="deletable">
 					<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
+					<span class="deletable_handle"></span>
 				</span>
 			</div>
 			<?
@@ -182,18 +183,18 @@ $(".ask_add").live('click',function(){
 	$("#"+$(this).attr('rel')).slideDown();
 });
 
-$(".deletable").live('click',function(){
-	if($(this).hasClass("title")){ // question
-		$.post("<?=\kinaf\routes::url_to("question","delete",$question);?>",function(data){
-			location.href = "/";
-		});
-	} else if($(this).hasClass("answer_content")){ // answer
-		$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
-			reloadAnswers();
-		});
-	} else { // comment
-		$(this).remove();
+$(".deletable").live("mouseover mouseout",function(event){
+	
+	if( event.type == "mouseover"){
+		
+		$(this).find(".deletable_handle:first").attr('style', 'display: inline !important');
+		
+	} else {
+	
+		$(this).find(".deletable_handle:first").hide();
+	
 	}
+	
 });
 
 </script>

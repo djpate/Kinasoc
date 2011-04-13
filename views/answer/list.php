@@ -5,7 +5,8 @@ if(count($answers)>0):
 	<?
 	foreach($answers as $answer):
 		?>
-		<div class="answer_row <?if($answer->isAccepted()){echo "accepted";}?>">
+		<div class="answer_row deletable <?if($answer->isAccepted()){echo "accepted";}?>">
+			<span class="deletable_handle"></span>
 			<div class="answer_vote">
 				<?
 				if($answer->isAccepted()):
@@ -26,7 +27,7 @@ if(count($answers)>0):
 				<br />
 				<img src="/images/thumbs_down.png" class="link answerVote" rel="down" id="<?=$answer->id;?>" />
 			</div>
-			<div class="answer_content deletable">
+			<div class="answer_content">
 				<?=$answer->content;?>
 			</div>
 			<div style="clear:both"></div>
@@ -44,9 +45,10 @@ if(count($answers)>0):
 			<?
 			foreach($answer->getComments() as $comment):
 				?>
-				<div class="comment deletable">
-					<span>
+				<div class="comment">
+					<span class="deletable">
 						<?=$comment->content;?> - <span class="user"><?=$comment->user->login;?></span>
+						<span class="deletable_handle"></span>
 					</span>
 				</div>
 				<?
