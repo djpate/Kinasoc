@@ -15,6 +15,8 @@
 			
 			$this->add("connected",$this->connected);
 			
+			$this->add("popularTags",tag::popular());
+			
 			if($this->connected){
 				$this->connected_user = user::connected();
 				$this->add("connected_user",$this->connected_user);

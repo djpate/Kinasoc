@@ -2,7 +2,7 @@
 
 namespace controllers;
 
-	class home extends \kinaf\controller{
+	class home extends \application\controller{
 		
 		public function indexAction(){
 			$this->add("questions",\application\question::all());

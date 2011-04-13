@@ -1,3 +1,8 @@
 tags:
   json:
     url: /tags.json
+  filter:
+    url: /tag/{id}/{label}.html
+    reg:
+      - ([0-9]+)
+      - (.*)

@@ -21,15 +21,15 @@
 
 						</li>
 						<li>
-							<h2><?=_("Tags");?></h2>
+							<h2><?=_("Les tags populaire");?></h2>
 							<ul>
-								<li><a href="#">Aliquam libero</a></li>
-								<li><a href="#">Consectetuer adipiscing elit</a></li>
-								<li><a href="#">Metus aliquam pellentesque</a></li>
-
-								<li><a href="#">Suspendisse iaculis mauris</a></li>
-								<li><a href="#">Urnanet non molestie semper</a></li>
-								<li><a href="#">Proin gravida orci porttitor</a></li>
+								<?
+								foreach($popularTags as $tag):
+									?>
+										<li><a href="<?=\kinaf\routes::url_to("tags","filter",$tag);?>"><?=$tag;?></a> x <?=$tag->used();?></li>
+									<?
+								endforeach;
+								?>
 							</ul>
 						</li>
 					</ul>
