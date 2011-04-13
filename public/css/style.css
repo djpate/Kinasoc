@@ -546,3 +546,7 @@ span.tag{
 .bold {
 	font-weight: bold;
 }
+
+.commentform{
+	display:none;
+}

@@ -54,7 +54,10 @@ if(count($answers)>0):
 			?>
 			
 			<div class="comment">
-				<form class="commentform" onsubmit="return false">
+				<span class="ask_add link bold" rel="answer_<?=$answer->id;?>">
+					<?=_("Ajouter un commentaire");?>
+				</span>
+				<form class="commentform" onsubmit="return false" id="answer_<?=$answer->id;?>">
 					<input type="hidden" name="answer" value="<?=$answer->id?>" />
 					<input type="hidden" name="type" value="answer" />
 					<div style="width:80%;float:left">
@@ -76,14 +79,21 @@ if(count($answers)>0):
 endif;
 ?>
 <script>
-	$(".commentform").validate({
-		submitHandler: function(form){
-			$.post("<?=\kinaf\routes::url_to("comments","add");?>",$(form).serialize(),function(data){
-				if(data == "ok"){
-					$("<div class='comment'><span>"+$(form).find("textarea").val()+" - <span class='user'><?=$connected_user->login;?></span></span></div>").insertBefore($(form).parent()).effect("highlight", {}, 3000);
-					form.reset();
-				}
-			});
-		}
+
+	
+	$(".commentform").each(function() {
+		$(this).validate({
+			submitHandler: function(form){
+				$.post("<?=\kinaf\routes::url_to("comments","add");?>",$(form).serialize(),function(data){
+					if(data == "ok"){
+						$("<div class='comment'><span>"+$(form).find("textarea").val()+" - <span class='user'><?=$connected_user->login;?></span></span></div>").insertBefore($(form).parent()).effect("highlight", {}, 3000);
+						$("form").hide();
+						$("form").prev().show();
+						form.reset();
+					}
+				});
+			}
+		});
 	});
+	
 </script>

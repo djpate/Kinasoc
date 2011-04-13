@@ -49,7 +49,10 @@
 	?>
 	
 	<div class="comment">
-		<form class="commentform" onsubmit="return false">
+		<span class="ask_add link bold" rel="question_comm">
+			<?=("Ajouter un commentaire");?>
+		</span>
+		<form class="commentform" onsubmit="return false" id="question_comm">
 			<input type="hidden" name="question" value="<?=$question->id?>" />
 			<input type="hidden" name="type" value="question" />
 			<div style="width:80%;float:left">
@@ -172,6 +175,11 @@ $(".primaryAction").click(function(){
 			displayError(msg);
 		}
 	})
+});
+
+$(".ask_add").live('click',function(){
+	$(this).hide();
+	$("#"+$(this).attr('rel')).slideDown();
 });
 
 </script>
