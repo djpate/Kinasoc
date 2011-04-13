@@ -31,6 +31,13 @@ if(count($answers)>0):
 			</div>
 			<div style="clear:both"></div>
 			<span class="user_bar_info">
+				<div class="action">
+					<ul>
+						<li><?=_("Commenter");?></li>
+						<li><?=_("Modifier");?></li>
+						<li><?=_("Supprimer");?></li>
+					</ul>
+				</div>
 				<div class="img">
 					<img src="<?=$answer->user->get_gravatar("30");?>" />
 				</div>
