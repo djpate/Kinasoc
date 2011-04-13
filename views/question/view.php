@@ -109,7 +109,7 @@
 	
 	$(".answerVote").live('click',function(){
 		zhis = $(this);
-		$.post("<?=\kinaf\routes::url_to("question","vote_answer");?>",{"id":$(this).attr('id'),"type":$(this).attr('rel')},function(data){
+		$.post("<?=\kinaf\routes::url_to("answer","vote");?>",{"id":$(this).attr('id'),"type":$(this).attr('rel')},function(data){
 			if(is_int(data)){
 				$("#answer_count_"+zhis.attr('id')).html(data);
 			} else {
@@ -140,7 +140,7 @@
 			$(this).parent().parent().addClass("accepted");
 			$(this).attr('src','/images/accepted.png');
 		}
-		$.post("<?=\kinaf\routes::url_to("question","accept_answer");?>",{'id':$(this).attr('rel')});
+		$.post("<?=\kinaf\routes::url_to("answer","accept");?>",{'id':$(this).attr('rel')});
 	});
 	
 <? else: ?>
@@ -148,7 +148,7 @@
 <? endif; ?>
 
 function reloadAnswers(){
-	$(".answer_container").load("<?=\kinaf\routes::url_to("question","answers",$question);?>");
+	$(".answer_container").load("<?=\kinaf\routes::url_to("answer","list",$question);?>");
 }
 
 reloadAnswers();
@@ -159,7 +159,7 @@ $("#answer_content").wysiwyg({
 });
 
 $(".primaryAction").click(function(){
-	$.post("<?=\kinaf\routes::url_to("question","new_answer",$question);?>",$(".answer_form").serialize(),function(data){
+	$.post("<?=\kinaf\routes::url_to("answer","new",$question);?>",$(".answer_form").serialize(),function(data){
 		if(data == "ok"){
 			$(".answer_form")[0].reset();
 			reloadAnswers();
@@ -188,7 +188,9 @@ $(".deletable").live('click',function(){
 			location.href = "/";
 		});
 	} else if($(this).hasClass("answer_content")){ // answer
-		reloadAnswers();
+		$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
+			reloadAnswers();
+		});
 	} else { // comment
 		$(this).remove();
 	}

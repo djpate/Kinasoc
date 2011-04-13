@@ -11,18 +11,6 @@ question:
     url: /question/vote-{id}.html
     reg:
       - ([0-9]+)
-  answers:
-    url: /question/answers-{id}.html
-    reg:
-      - ([0-9]+)
-  new_answer:
-    url: /question/new-answer/{id}
-    reg:
-      - ([0-9]+)
-  vote_answer:
-    url: /question/vote-answer
-  accept_answer:
-    url: /question/accept-answer
   view:
     url: /question/{id}/{title}.html
     reg:

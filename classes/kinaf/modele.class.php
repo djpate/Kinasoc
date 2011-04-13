@@ -185,55 +185,70 @@ abstract class Modele {
 		}
 	}
 	
+	private function prepareForDb($field){
+		$type = $this->orm->getType($field);
+					
+		if($type=="object"&&is_object($this->$field)){
+			$value = $this->$field->id;
+		} elseif($type=="date") {
+			$value = date_fr_to_en($this->$field);
+		} elseif($type=="datetime"){
+			$value = datetime_fr_to_en($this->$field);
+		} else {
+			$value = $this->$field;
+		}
+		
+		return $this->pdo->quote(stripslashes($value));
+	}
+	
 	public function save(){
 		
 		if($this->isValid()){
 		
 			if($this->id==0){ // is this is a new record we create it
-				$this->create();
-			}
-			
-			$req = "update `".static::$table."` set ";
-			$fields = $this->orm->getFields();
-			
-			foreach($fields as $field){
 				
-				$type = $this->orm->getType($field);
+				$fields = $this->orm->getFields();
 				
-				error_log($field." ----- ".$type);
-				
-				$req .= "`".$field."` = ";
-				
-				if($type=="object"&&is_object($this->$field)){
-					$value = $this->$field->id;
-				} elseif($type=="date") {
-					$value = date_fr_to_en($this->$field);
-				} elseif($type=="datetime"){
-					$value = datetime_fr_to_en($this->$field);
-				} else {
-					$value = $this->$field;
+				$req = "insert into `".static::$table."` (";
+				foreach($fields as $field){
+					$req .= "`".$field."`,";
 				}
+				$req = substr($req, 0, -1);  // removes last ,
+				$req .= ") values (";
+				foreach($fields as $field){
+					$value = $this->prepareForDb($field);
+					$req .= $value.",";
+				}
+				$req = substr($req, 0, -1);  // removes last ,
+				$req .= ")";
 				
-				$req .= $this->pdo->quote(stripslashes($value)).",";
+				$this->pdo->exec($req);
 				
+				$this->id = $this->pdo->lastInsertId();
+			
+			} else {
+			
+				$req = "update `".static::$table."` set ";
+				$fields = $this->orm->getFields();
+				
+				foreach($fields as $field){
+					
+					$req .= "`".$field."` = ";
+					
+					$value = $this->prepareForDb($field);
+					
+					$req .= $value.",";
+					
+				}
+				$req = substr($req, 0, -1); 
+				$req .= " where id = ".$this->id;
+				
+				$this->pdo->exec($req);
 			}
-			$req = substr($req, 0, -1); 
-			$req .= " where id = ".$this->id;
-			
-			error_log($req);
-			
-			$this->pdo->exec($req);
 			
 			return true;
 		} else {
 			return false;
-		}
-	}
-	
-	private function create(){
-		if($this->id==0){
-			$this->pdo->exec("insert into  `".static::$table."` (id) values ('')");
-			$this->id = $this->pdo->lastInsertId(); 
 		}
 	}
 	

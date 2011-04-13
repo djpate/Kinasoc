@@ -1,0 +1,15 @@
+answer:
+  delete:
+    url: /answer/delete
+  new:
+    url: /answer/new/{id}
+    reg:
+      - ([0-9]+)
+  vote:
+    url: /answer/vote
+  accept:
+    url: /answer/accept
+  list:
+    url: /answer/list/{id}
+    reg:
+      - ([0-9]+)
