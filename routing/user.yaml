@@ -3,3 +3,7 @@ user:
     url: /login
   openid_login:
     url: /user/openid
+  register:
+    url: /user/register
+  forgot_pwd:
+    url: /user/forgot-password

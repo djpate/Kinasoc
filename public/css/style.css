@@ -583,3 +583,13 @@ span.tag{
 	-moz-border-radius: 0 0 10px 10px;
 	-webkit-border-radius: 0 0 10px 10px;
 }
+
+h3.register{
+	font-size: 16px;
+	margin: 10px 0;
+}
+
+a.register{
+	padding-left: 30px;
+	font-size: 23px;
+}
