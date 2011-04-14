@@ -39,10 +39,12 @@ abstract class Modele {
 	
 	public static function getByField($field,$value){
 		$pdo = \kinaf\db::singleton();
+		$classname = get_called_class();
 		$r = $pdo->query("select id from ".static::$table." where `".$field."` = '$value'");
 		if($r->rowCount()==1){
 			$r = $r->fetch();
-			return new user($r['id']);
+			$classname = get_called_class();
+			return new $classname($r['id']);
 		} else if($r->rowCount()>1){
 			$ret = array();
 			foreach($r as $row){

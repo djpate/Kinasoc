@@ -8,6 +8,24 @@
 			$this->render();
 		}
 		
+		public function registerAction(){
+			$this->render();
+		}
+		
+		public function register_helperAction(){
+			if(isset($_REQUEST['email'])){
+				$u = \application\user::getByemail($_REQUEST['email']);
+			} else if(isset($_REQUEST['login'])){
+				$u = \application\user::getBylogin($_REQUEST['login']);
+			}
+			
+			if( is_null($u) ){
+				echo "true";
+			} else {
+				echo "false";
+			}
+		}
+		
 		public function logoutAction(){
 			$this->connected_user->logout();
 			\kinaf\routes::redirect_to("home","index");

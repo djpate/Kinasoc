@@ -6,3 +6,5 @@ minAnswerTitle: 50
 minAnswerContent: 50
 minComment: 10
 canCreateTags: 'false'
+minLengthPass: 6
+minLengthLogin: 6

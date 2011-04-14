@@ -1,6 +1,6 @@
 <h2 class="title"><?=_("Connexion à votre compte");?></h1>
 
-<h3 class="register">Si vous avez un compte sur l'un des sites ci-dessous cliquer sur le logo pour vous connecter</h3>
+<h3 class="register"><?=_("Si vous avez un compte sur l'un des sites ci-dessous cliquer sur le logo pour vous connecter");?></h3>
 
 <form action="/user/openid" method="get" id="openid_form">
 	<input type="hidden" name="action" value="verify" />
@@ -17,13 +17,13 @@
 	</noscript>
 </form>
 
-<h3 class="register">Si vous n'avez pas de compte sur un des ces site</h3>
+<h3 class="register"><?=_("Si vous n'avez pas de compte sur un des ces site");?></h3>
 
-	<a href="<?=\kinaf\routes::url_to("user","register");?>" class="register">Créer un compte</a>
+	<a href="<?=\kinaf\routes::url_to("user","register");?>" class="register"><?=_("Créer un compte");?></a>
 	
-<h3 class="register">Si vous avez oublier votre mot de passe</h3>
+<h3 class="register"><?=_("Si vous avez oublier votre mot de passe");?></h3>
 
-	<a href="<?=\kinaf\routes::url_to("user","forgot_pwd");?>" class="register">Recupérer votre mot de passe</a>
+	<a href="<?=\kinaf\routes::url_to("user","forgot_pwd");?>" class="register"><?=_("Recupérer votre mot de passe");?></a>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

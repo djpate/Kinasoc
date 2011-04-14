@@ -5,7 +5,10 @@ user:
     url: /user/openid
   register:
     url: /user/register
+  register_helper:
+    url: /user/register-helper
   forgot_pwd:
     url: /user/forgot-password
   logout:
     url: /user/logout
+   
