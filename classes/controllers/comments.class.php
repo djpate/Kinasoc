@@ -5,7 +5,7 @@
 	class comments extends \application\controller{
 		
 		public function addAction(){
-			if( $this->connected ):
+			if($this->connected):
 				if( strlen($_REQUEST['content']) >= $this->params['minComment'] ):
 					if($_REQUEST['type'] == "answer" or $_REQUEST['type'] == "question"):
 						

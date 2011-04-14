@@ -48,12 +48,15 @@ Released   : 20100529
 			<div id="menu">
 				<ul>
 					<li class="current_page_item"><a href="/">Home</a></li>
-
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Photos</a></li>
+					
+					<li><a href="<?=\kinaf\routes::url_to("question","new");?>"><?=_("Posez une question");?></a></li>
+					
+					<? if($connected): ?>
+						<li><a href="#"><?=_("Votre compte");?></a></li>
+					<? else: ?>
+						<li><a href="<?=\kinaf\routes::url_to("user","login");?>"><?=_("Connexion");?></a></li>
+					<? endif; ?>
 					<li><a href="#">About</a></li>
-					<li><a href="#">Links</a></li>
-					<li><a href="#">Contact</a></li>
 				</ul>
 
 			</div>

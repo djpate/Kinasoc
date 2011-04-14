@@ -9,6 +9,7 @@ namespace kinaf;
 		protected $layout;
 		
 		public function __construct($controller,$action){
+			error_log($controller."=>".$action);
 			$this->controller = $controller;
 			$this->action = $action;
 			$this->variableStack = array();

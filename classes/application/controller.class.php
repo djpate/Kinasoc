@@ -5,6 +5,7 @@
 	class controller extends \kinaf\controller{
 		
 		public function __construct($controller,$action){
+			
 			parent::__construct($controller,$action);
 			
 			$yamlparser = new \libs\yaml\sfYamlParser();
@@ -21,6 +22,7 @@
 				$this->connected_user = user::connected();
 				$this->add("connected_user",$this->connected_user);
 			}
+		
 		}
 	
 	}
