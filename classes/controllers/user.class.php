@@ -2,10 +2,42 @@
 
 	namespace controllers;
 	
-	class user extends \application\controllers{
+	class user extends \application\controller{
 		
 		public function loginAction(){
-			echo "login";
+			$this->render();
+		}
+		
+		public function openid_loginAction(){
+			$client = new \libs\openid\LightOpenID();
+			
+			if($_REQUEST['action']=="verify"  && !$client->mode ){
+				$client->required = array("contact/email","namePerson/first","namePerson/last","namePerson/friendly");
+				$client->identity = $_REQUEST['openid_identifier'];
+				header('Location: ' . $client->authUrl());
+			} elseif($client->mode == 'cancel') {
+				
+			} else {
+				if($client->validate()){
+					$user = \application\user::findByopenid_identifier($client->identify); 
+					if(is_object($user)){
+						$_SESSION['account']['id'] = $user->id;
+						\kinaf\routes::redirect_to("home","index");
+					} else {
+						// new account
+						print_r($_REQUEST);
+						$u = new \application\user();
+						$u->email = $_REQUEST['openid_ext1_value_contact_email'];
+						$u->first = $_REQUEST['openid_ext1_value_namePerson_first'];
+						$u->last = $_REQUEST['openid_ext1_value_namePerson_last'];
+						$u->login = $_REQUEST['openid_ext1_value_namePerson_friendly'];
+						$u->openid_identifier = $_REQUEST['openid_identity'];
+						$u->save();
+						$_SESSION['account']['id'] = $u->id;
+						\kinaf\routes::redirect_to("home","index");
+					}
+				}
+			}
 		}
 		
 	}

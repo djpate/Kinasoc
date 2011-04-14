@@ -23,6 +23,8 @@ Released   : 20100529
 	<link href="/css/tag-it.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/jquery.wysiwyg.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/css/openid.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/css/openid-shadow.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/uni-form.jquery.min.js"></script>
@@ -31,6 +33,8 @@ Released   : 20100529
 	<script type="text/javascript" src="/js/jquery.wysiwyg.js"></script>
 	<script type="text/javascript" src="/js/jquery.validate.pack.js"></script>
 	<script type="text/javascript" src="/js/tag-it.js"></script>
+	<script type="text/javascript" src="/js/openid-jquery.js"></script>
+	<script type="text/javascript" src="/js/openid-en.js"></script>
 </head>
 <body>
 <div id="wrapper">

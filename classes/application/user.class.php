@@ -5,11 +5,19 @@
 		protected static $table = "user";
 		
 		public static function isConnected(){
-			return true;
+			if(isset($_SESSION['account']['id'])){
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		public static function connected(){
-			return new user(1);
+			if(static::isConnected()){
+				return new user($_SESSION['account']['id']);
+			} else {
+				return null;
+			}
 		}
 		
 		public function __toString(){

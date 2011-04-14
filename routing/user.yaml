@@ -1,3 +1,5 @@
 user:
   login:
     url: /login
+  openid_login:
+    url: /user/openid

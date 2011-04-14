@@ -5,5 +5,11 @@ fields:
     type: varchar
   email:
     type: varchar
+  openid_identifier:
+    type: varchar
+  first:
+    type: varchar
+  last:
+    type: varchar
 constraints:
   id: { integer: 'true' }
