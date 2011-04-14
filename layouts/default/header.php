@@ -39,7 +39,19 @@ Released   : 20100529
 <body>
 <div id="wrapper">
 	<div id="header-wrapper">
+		
 		<div id="header">
+			
+			<div class="accountBar">
+				<div style="padding:6px">
+					<?
+					if($connected):
+						echo $connected_user->first;
+						echo $connected_user->getPoints();
+					endif;
+					?>
+				</div>
+			</div>
 
 			<div id="logo">
 				<h1><a href="/">Kinasoc</a></h1>

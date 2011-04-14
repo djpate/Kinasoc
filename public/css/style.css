@@ -66,6 +66,7 @@ a:hover {
 	width: 950px;
 	margin: 0 auto;
 	padding: 0px 0px 0px 30px;
+	position:relative;
 }
 
 /* Logo */
@@ -570,4 +571,15 @@ span.tag{
 	background-repeat: no-repeat;
 	background-position: right center;
 	border-top:0 !important;
+}
+
+.accountBar{
+	height: 30px;
+	width: 200px;
+	background-color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
 }
