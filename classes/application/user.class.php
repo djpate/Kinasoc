@@ -24,6 +24,10 @@
 			return $this->login."";
 		}
 		
+		public function logout(){
+			$_SESSION['account'] = array();
+		}
+		
 		public function getPoints(){
 			return 1500;
 		}

@@ -48,6 +48,9 @@ Released   : 20100529
 					if($connected):
 						echo $connected_user->first;
 						echo $connected_user->getPoints();
+						?>
+						<a href="<?=\kinaf\routes::url_to("user","logout");?>"><?=_("Se deconnecter");?></a>
+						<?
 					endif;
 					?>
 				</div>

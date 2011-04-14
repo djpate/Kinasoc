@@ -8,6 +8,11 @@
 			$this->render();
 		}
 		
+		public function logoutAction(){
+			$this->connected_user->logout();
+			\kinaf\routes::redirect_to("home","index");
+		}
+		
 		public function openid_loginAction(){
 			$client = new \libs\openid\LightOpenID();
 			
