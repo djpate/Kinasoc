@@ -29,12 +29,12 @@ Released   : 20100529
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/uni-form.jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.showMessage.min.js"></script>
-	<script type="text/javascript" src="/js/kinasoc.js"></script>
 	<script type="text/javascript" src="/js/jquery.wysiwyg.js"></script>
 	<script type="text/javascript" src="/js/jquery.validate.pack.js"></script>
 	<script type="text/javascript" src="/js/tag-it.js"></script>
 	<script type="text/javascript" src="/js/openid-jquery.js"></script>
 	<script type="text/javascript" src="/js/openid-en.js"></script>
+	<script type="text/javascript" src="/js/kinasoc.js"></script>
 </head>
 <body>
 <div id="wrapper">

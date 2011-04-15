@@ -13,5 +13,9 @@ fields:
     type: varchar
   creationDate:
     type: datetime
+  lastLogin:
+    type: datetime
+  presence:
+    type: int
 constraints:
   id: { integer: 'true' }

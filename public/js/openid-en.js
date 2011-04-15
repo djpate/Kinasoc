@@ -6,6 +6,10 @@
 */
 
 var providers_large = {
+	kinasoc : {
+		name : 'Kinasoc',
+		url : 'javascript:kinasoc_click();'
+	},
 	google : {
 		name : 'Google',
 		url : 'https://www.google.com/accounts/o8/id'
@@ -23,11 +27,6 @@ var providers_large = {
 		name : 'MyOpenID',
 		label : 'Enter your MyOpenID username.',
 		url : 'http://{username}.myopenid.com/'
-	},
-	openid : {
-		name : 'OpenID',
-		label : 'Enter your OpenID.',
-		url : null
 	}
 };
 

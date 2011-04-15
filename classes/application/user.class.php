@@ -20,6 +20,23 @@
 			}
 		}
 		
+		public static function login($l,$p){
+			$pdo = \kinaf\db::singleton();
+			$q = $pdo->query("select id from user where login = ".$pdo->quote($l)." and password = ".$pdo->quote(hash("sha512",$p)));
+			if($q->rowCount() == 1){
+				$q = $q->fetch();
+				$u = new user($q['id']);
+				$u->loginProcess();
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		public static function validLogin($login){
+			return preg_match("^([a-zA-Z0-9]+)^",$login);
+		}
+		
 		public function __toString(){
 			return $this->login."";
 		}
@@ -30,6 +47,17 @@
 		
 		public function getPoints(){
 			return 1500;
+		}
+		
+		public function loginProcess(){
+			$_SESSION['account']['id'] = $this->id;
+			$today = date("d/m/Y");
+			$lastLogin = date("d/m/Y",strtotime($this->lastLogin));
+			if($today != $lastLogin){
+				$this->presence = $this->presence + 1;
+			}
+			$this->lastLogin = date("d/m/Y G:i:s");
+			$this->save();
 		}
 		
 		/**

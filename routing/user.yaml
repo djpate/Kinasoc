@@ -1,6 +1,8 @@
 user:
   login:
     url: /user/login
+  local_login:
+    url: /user/login/local
   openid_login:
     url: /user/openid
   register:

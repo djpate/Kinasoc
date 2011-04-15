@@ -22,6 +22,11 @@ function extractLast( term ) {
 
 $(document).ready(function(){
    $('form').uniform();
+   
+   jQuery.validator.addMethod("validlogin", function(value, element) {
+	return this.optional(element) || /^([a-zA-Z0-9]+)$/.test(value);
+	}, "Vous ne pouvez utilisez que des lettres ou des chiffres."); 
+   
 });
 
 var RecaptchaOptions = {

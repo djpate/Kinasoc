@@ -85,6 +85,7 @@
 					remote: "<?=\kinaf\routes::url_to("user","register_helper");?>"
 				},
 				login: {
+					validlogin: true,
 					remote: "<?=\kinaf\routes::url_to("user","register_helper");?>"
 				},
 				password_confirm: {

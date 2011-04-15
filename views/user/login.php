@@ -29,4 +29,8 @@
 		$(document).ready(function() {
 			openid.init('openid_identifier');
 		});
+		
+		function kinasoc_click(){
+			location.href = "<?=\kinaf\routes::url_to("user","local_login");?>";
+		}
 	</script>

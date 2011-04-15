@@ -27,6 +27,7 @@
 			},
 			rules: {
 				login: {
+					validlogin: true,
 					remote: "<?=\kinaf\routes::url_to("user","register_helper");?>"
 				}
 			},

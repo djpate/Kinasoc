@@ -12,6 +12,18 @@
 			$this->render();
 		}
 		
+		public function local_loginAction(){
+			if(isset($_POST['login']) && isset($_POST['password'])):
+				if(\application\user::login($_POST['login'],$_POST['password'])):
+					\kinaf\routes::redirect_to("home","index");
+				else:
+					$this->add("error",_("Login / Mot de passe incorrect"));
+					$this->add("login",$_POST['login']);
+				endif;
+			endif;
+			$this->render();
+		}
+		
 		public function register_helperAction(){
 			if(isset($_REQUEST['email'])){
 				$u = \application\user::getByemail($_REQUEST['email']);
@@ -66,7 +78,7 @@
 						$u->creationDate = date("d/m/Y G:i:s");
 						$u->openid_identifier = $_REQUEST['openid_identity'];
 						$u->save();
-						$_SESSION['account']['id'] = $u->id;
+						$u->loginProcess();
 						\kinaf\routes::redirect_to("user","create_login");
 					}
 				}
@@ -79,24 +91,28 @@
 					if( strlen($_REQUEST['password']) >= $this->params['minLengthPass'] ):
 						if ( $this->verifyCaptcha($_REQUEST['recaptcha_challenge_field'],$_REQUEST['recaptcha_response_field']) ):
 							if ( filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) ):
-								$u = \application\user::getByemail($_REQUEST['email']);
-								if( is_null($u) ):
-									$u = \application\user::getBylogin($_REQUEST['login']);
+								if( preg_match("^[a-zA-Z0-9]+^",$_REQUEST['login']) ):
+									$u = \application\user::getByemail($_REQUEST['email']);
 									if( is_null($u) ):
-										// all the checks are good we create the user
-										$u = new \application\user();
-										$u->login = $_REQUEST['login'];
-										$u->password = hash("sha512",$_REQUEST['password']);
-										$u->email = $_REQUEST['email'];
-										$u->creationDate = date("d/m/Y G:i:s");
-										$u->save();
-										$_SESSION['account']['id'] = $u->id;
-										echo "ok";
+										$u = \application\user::getBylogin($_REQUEST['login']);
+										if( is_null($u) ):
+											// all the checks are good we create the user
+											$u = new \application\user();
+											$u->login = $_REQUEST['login'];
+											$u->password = hash("sha512",$_REQUEST['password']);
+											$u->email = $_REQUEST['email'];
+											$u->creationDate = date("d/m/Y G:i:s");
+											$u->save();
+											$u->loginProcess();
+											echo "ok";
+										else:
+											echo "err_7"; // login is allready used
+										endif;
 									else:
-										echo "err_7"; // login is allready used
+										echo "err_6"; // email is allready used
 									endif;
 								else:
-									echo "err_6"; // email is allready used
+									echo "err_8"; // space or special chars
 								endif;
 							else:
 								echo "err_5"; // email is invalid
