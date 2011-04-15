@@ -1,12 +1,18 @@
 user:
   login:
-    url: /login
+    url: /user/login
   openid_login:
     url: /user/openid
   register:
     url: /user/register
   register_helper:
     url: /user/register-helper
+  create:
+    url: /user/create
+  create_login:
+    url: /user/create-login
+  save_login:
+    url: /user/save-login
   forgot_pwd:
     url: /user/forgot-password
   logout:

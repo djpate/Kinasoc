@@ -35,31 +35,123 @@
 			$client = new \libs\openid\LightOpenID();
 			
 			if($_REQUEST['action']=="verify"  && !$client->mode ){
-				$client->required = array("contact/email","namePerson/first","namePerson/last","namePerson/friendly");
+				$client->required = array("contact/email","namePerson/first","namePerson/last");
 				$client->identity = $_REQUEST['openid_identifier'];
 				header('Location: ' . $client->authUrl());
 			} elseif($client->mode == 'cancel') {
 				
 			} else {
 				if($client->validate()){
-					$user = \application\user::findByopenid_identifier($client->identify); 
+					$user = \application\user::getByopenid_identifier($_REQUEST['openid_identity']); 
 					if(is_object($user)){
 						$_SESSION['account']['id'] = $user->id;
 						\kinaf\routes::redirect_to("home","index");
 					} else {
 						// new account
-						print_r($_REQUEST);
+						$attributes = $client->getAttributes();
 						$u = new \application\user();
-						$u->email = $_REQUEST['openid_ext1_value_contact_email'];
-						$u->first = $_REQUEST['openid_ext1_value_namePerson_first'];
-						$u->last = $_REQUEST['openid_ext1_value_namePerson_last'];
-						$u->login = $_REQUEST['openid_ext1_value_namePerson_friendly'];
+						foreach($attributes as $id => $attribute):
+							switch($id){
+								case 'contact/email':
+									$u->email =$attribute;
+								break;
+								case 'namePerson/first':
+									$u->first =$attribute;
+								break;
+								case 'namePerson/last':
+									$u->last =$attribute;
+								break;
+							}
+						endforeach;
+						$u->creationDate = date("d/m/Y G:i:s");
 						$u->openid_identifier = $_REQUEST['openid_identity'];
 						$u->save();
 						$_SESSION['account']['id'] = $u->id;
-						\kinaf\routes::redirect_to("home","index");
+						\kinaf\routes::redirect_to("user","create_login");
 					}
 				}
+			}
+		}
+		
+		public function createAction(){
+			if(!$_REQUEST['recaptcha_response_field'] == ""):
+				if( strlen($_REQUEST['login']) >= $this->params['minLengthLogin'] ):
+					if( strlen($_REQUEST['password']) >= $this->params['minLengthPass'] ):
+						if ( $this->verifyCaptcha($_REQUEST['recaptcha_challenge_field'],$_REQUEST['recaptcha_response_field']) ):
+							if ( filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) ):
+								$u = \application\user::getByemail($_REQUEST['email']);
+								if( is_null($u) ):
+									$u = \application\user::getBylogin($_REQUEST['login']);
+									if( is_null($u) ):
+										// all the checks are good we create the user
+										$u = new \application\user();
+										$u->login = $_REQUEST['login'];
+										$u->password = hash("sha512",$_REQUEST['password']);
+										$u->email = $_REQUEST['email'];
+										$u->creationDate = date("d/m/Y G:i:s");
+										$u->save();
+										$_SESSION['account']['id'] = $u->id;
+										echo "ok";
+									else:
+										echo "err_7"; // login is allready used
+									endif;
+								else:
+									echo "err_6"; // email is allready used
+								endif;
+							else:
+								echo "err_5"; // email is invalid
+							endif;
+						else:
+							echo "err_4"; // captcha is bad
+						endif;
+					else:
+						echo "err_3"; // password too short
+					endif;
+				else:
+					echo "err_2"; // login too short
+				endif;
+			else:
+				echo "err_1"; // captcha field is empty
+			endif;
+		}
+		
+		public function create_loginAction(){
+			$this->render();
+		}
+		
+		public function save_loginAction(){
+			if( $this->connected ):
+				if( strlen($_REQUEST['login']) >= $this->params['minLengthLogin'] ):
+					$u = \application\user::getBylogin($_REQUEST['login']);
+					if( is_null($u) ):
+						$this->connected_user->login = $_REQUEST['login'];
+						$this->connected_user->save();
+						echo "ok";
+					else:
+						echo "err_3"; // login is allready used
+					endif;
+				else:
+					echo "err_2"; // login too short
+				endif;
+			else:
+				echo "err_1"; // not connected
+			endif;
+		}
+		
+		private function verifyCaptcha($challenge,$response){
+			$handle = curl_init("http://www.google.com/recaptcha/api/verify");
+			$post = array("privatekey"=>$this->params['reCaptcha_private'],
+										"remoteip"=> $_SERVER['REMOTE_ADDR'],
+										"challenge"=>$challenge,
+										"response"=>$response);
+			curl_setopt($handle, CURLOPT_POST, true);
+			curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($handle, CURLOPT_POSTFIELDS, $post);
+			$info = explode("\n",curl_exec($handle));
+			if( $info[0] == "true" ){
+				return true;
+			} else {
+				return false;
 			}
 		}
 		

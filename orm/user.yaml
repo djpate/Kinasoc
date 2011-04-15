@@ -11,5 +11,7 @@ fields:
     type: varchar
   last:
     type: varchar
+  creationDate:
+    type: datetime
 constraints:
   id: { integer: 'true' }

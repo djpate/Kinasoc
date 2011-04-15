@@ -24,4 +24,10 @@ $(document).ready(function(){
    $('form').uniform();
 });
 
+var RecaptchaOptions = {
+    theme : 'white',
+    lang : 'fr'
+ };
+
+
 

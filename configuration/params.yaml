@@ -8,3 +8,6 @@ minComment: 10
 canCreateTags: 'false'
 minLengthPass: 6
 minLengthLogin: 6
+reCaptcha_public: 6Ld2fsMSAAAAAEPkx8m-Fb0FjlC0WxxZ3JPTIc_I
+reCaptcha_private: 6Ld2fsMSAAAAANlwFbgd6qndnP8-A5LhV9-wvWfV
+
