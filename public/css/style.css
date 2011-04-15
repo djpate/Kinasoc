@@ -63,9 +63,9 @@ a:hover {
 }
 
 #header {
-	width: 950px;
+	width: 980px;
 	margin: 0 auto;
-	padding: 0px 0px 0px 30px;
+	padding: 0px 0px 0px 0px;
 	position:relative;
 }
 
@@ -149,7 +149,7 @@ a:hover {
 
 #menu {
 	float: right;
-	width: 450px;
+	width: 474px;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0;

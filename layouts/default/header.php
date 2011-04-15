@@ -54,6 +54,7 @@ Released   : 20100529
 						<?
 					else:
 						?>
+						<img src="/images/login.png" />
 						<a href="<?=\kinaf\routes::url_to("user","login");?>"><?=_("Connexion / Inscription");?></a>
 						<?
 					endif;
@@ -67,16 +68,13 @@ Released   : 20100529
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="current_page_item"><a href="/">Home</a></li>
+					<li class="current_page_item"><a href="/"><?=_("Questions");?></a></li>
 					
 					<li><a href="<?=\kinaf\routes::url_to("question","new");?>"><?=_("Posez une question");?></a></li>
 					
-					<? if($connected): ?>
-						<li><a href="#"><?=_("Votre compte");?></a></li>
-					<? else: ?>
-						<li><a href="<?=\kinaf\routes::url_to("user","login");?>"><?=_("Connexion");?></a></li>
-					<? endif; ?>
-					<li><a href="#">About</a></li>
+					<li><a href="#"><?=_("Tags");?></a></li>
+					<li><a href="#"><?=_("Badges");?></a></li>
+					<li><a href="#"><?=_("A propos");?></a></li>
 				</ul>
 
 			</div>
