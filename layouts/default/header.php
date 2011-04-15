@@ -46,10 +46,15 @@ Released   : 20100529
 				<div style="padding:6px">
 					<?
 					if($connected):
-						echo $connected_user->first;
-						echo $connected_user->getPoints();
 						?>
+						<img src="/images/account.png" />
+						<a href="<?=\kinaf\routes::url_to("user","account");?>"><?=_("Votre compte");?></a>
+						<img src="/images/logout.png" />
 						<a href="<?=\kinaf\routes::url_to("user","logout");?>"><?=_("Se deconnecter");?></a>
+						<?
+					else:
+						?>
+						<a href="<?=\kinaf\routes::url_to("user","login");?>"><?=_("Connexion / Inscription");?></a>
 						<?
 					endif;
 					?>

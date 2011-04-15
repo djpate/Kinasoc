@@ -575,13 +575,28 @@ span.tag{
 
 .accountBar{
 	height: 30px;
-	width: 200px;
-	background-color: #fff;
+	background-color: #28A2CF;
+	border-bottom:2px solid #fff;
+	border-left:2px solid #fff;
+	border-right:2px solid #fff;
+	color:#fff;
 	position: absolute;
 	top: 0;
 	right: 0;
 	-moz-border-radius: 0 0 10px 10px;
 	-webkit-border-radius: 0 0 10px 10px;
+}
+
+.accountBar a{
+	color:#fff;
+	font-weight: bold;
+	font-size: 13px;
+	float:left;
+}
+
+.accountBar img{
+	float:left;
+	margin:0 5px;
 }
 
 h3.register{
