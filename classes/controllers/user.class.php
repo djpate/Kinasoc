@@ -39,7 +39,9 @@
 		}
 		
 		public function logoutAction(){
-			$this->connected_user->logout();
+			if($this->connected){
+				$this->connected_user->logout();
+			}
 			\kinaf\routes::redirect_to("home","index");
 		}
 		
@@ -51,7 +53,7 @@
 				$client->identity = $_REQUEST['openid_identifier'];
 				header('Location: ' . $client->authUrl());
 			} elseif($client->mode == 'cancel') {
-				
+				\kinaf\routes::redirect_to("user","login");
 			} else {
 				if($client->validate()){
 					$user = \application\user::getByopenid_identifier($_REQUEST['openid_identity']); 

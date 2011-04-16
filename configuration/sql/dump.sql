@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.41, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: askfex
 -- ------------------------------------------------------
--- Server version	5.1.41-3ubuntu12.10-log
+-- Server version	5.1.49-1ubuntu8.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -126,7 +126,7 @@ CREATE TABLE `question` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
-INSERT INTO `question` VALUES (2,'2011-04-13 13:27:26','1970-01-01 01:00:00','Mon serveur unix ne démarre plus !','Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.',2,148),(4,'2011-04-14 14:52:34','1970-01-01 01:00:00','Comment faire pour faire ceci !','Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.',1,1);
+INSERT INTO `question` VALUES (2,'2011-04-13 13:27:26','1970-01-01 01:00:00','Mon serveur unix ne démarre plus !','Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.',2,148),(4,'2011-04-14 14:52:34','1970-01-01 01:00:00','Comment faire pour faire ceci !','Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.',1,1),(5,'2011-04-15 15:25:53','1970-01-01 01:00:00','djddjsdf qsd fqsdfqsdf','mksdlmfkqslm <br>\r\n							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>\r\n							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>\r\n							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>\r\n							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>',7,1);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `question_tag` (
 
 LOCK TABLES `question_tag` WRITE;
 /*!40000 ALTER TABLE `question_tag` DISABLE KEYS */;
-INSERT INTO `question_tag` VALUES (2,2),(2,6),(2,7),(4,1),(4,2);
+INSERT INTO `question_tag` VALUES (2,2),(2,6),(2,7),(4,1),(4,2),(5,2);
 /*!40000 ALTER TABLE `question_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,13 +262,16 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `openid_identifier` varchar(500) NOT NULL,
   `first` varchar(50) NOT NULL,
   `last` varchar(50) NOT NULL,
+  `creationDate` datetime NOT NULL,
+  `lastLogin` datetime NOT NULL,
+  `presence` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +280,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'djpate','toto','djpate@gmail.com','','',''),(2,'korben','toto','gaultier.monier@gmail.com','','',''),(6,'','','pascal.denis.75@gmail.com','https://www.google.com/accounts/o8/id?id=AItOawk2fgCTolsq1wcT24E1ApHde69-wmCK0yw','pascal','denis');
+INSERT INTO `user` VALUES (1,'djpate','toto','djpate@gmail.com','','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0),(2,'korben','toto','gaultier.monier@gmail.com','','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0),(6,'','','pascal.denis.75@gmail.com','https://www.google.com/accounts/o8/id?id=AItOawk2fgCTolsq1wcT24E1ApHde69-wmCK0yw','pascal','denis','0000-00-00 00:00:00','0000-00-00 00:00:00',0),(7,'djPaet','','djpate@gmail.com','https://www.google.com/accounts/o8/id?id=AItOawnsx1UZ1shdDLDbuP4jMlE79h_7pCds8VM','Christophe','Verbinnen','2011-04-15 15:25:10','0000-00-00 00:00:00',0),(10,'djpate178','ade972a26def473f900b4a5e06093f0d1d2ca028a0e2f151eb8c79aca19b0426c9aecf0292cd8b3521ecd9df45913eb90a888c4ac538a01211f01f63e22c61d7','djpate+sss@gmail.com','','','','2011-04-16 10:13:39','2011-04-16 10:14:01',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-14 17:04:32
+-- Dump completed on 2011-04-16 10:28:46
