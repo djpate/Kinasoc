@@ -33,7 +33,7 @@ foreach($questions as $question):
 		</div>
 		
 		<div class="right_container">
-			<h1><a href="<?=\kinaf\routes::url_to("question","view",$question);?>"><?=$question->title;?></a></h1>
+			<h1><a href="<?=\kinaf\routes::url_to("question","view",$question);?>" title="<?=substr($question->content,0,250);?>..."><?=$question->title;?></a></h1>
 			<div class="tags">
 				<?
 				foreach($question->getTags() as $tag):
@@ -42,7 +42,7 @@ foreach($questions as $question):
 					<?
 				endforeach;
 				?>
-				<?=$question->ago();?> par <span class="user"><?=$question->user;?></span>
+				<?=$question->ago();?> par <span class="user"><a href="<?=\kinaf\routes::url_to("user","fiche",$question->user);?>"><?=$question->user;?></a></span>
 			</div>
 			<div style="clear:both"></div>
 		</div>

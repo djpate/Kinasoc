@@ -21,4 +21,9 @@ user:
     url: /user/logout
   account:
     url: /user/account
+  fiche:
+    url: /user/{id}/{login}
+    reg: 
+      - ([0-9]+)
+      - (.*)
    

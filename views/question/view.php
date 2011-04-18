@@ -49,6 +49,7 @@
 		endforeach;
 	?>
 	
+	<? if ( $connected ) : ?>
 	<div class="comment">
 		<span class="ask_add link bold" rel="question_comm">
 			<?=("Ajouter un commentaire");?>
@@ -68,20 +69,42 @@
 		</form>
 	</div>
 	
+	<? else: ?>
+	
+	<div style="text-align:center;font-size:14px">
+		<a href="<?=\kinaf\routes::url_to("user","login");?>">
+			<?=_("Pour ajouter un commentaire vous devez être connecté");?>
+		</a>
+	</div>
+	
+	<? endif; ?>
+	
 </div>
 
 <div class="answer_container">
 	
 </div>
 
-<? if(!$question->isAnswered()): ?>
+<? if( !$question->isAnswered() ): ?>
 
-<span class="separator"><?=_("Ajouter votre réponse");?></span>
+	<span class="separator"><?=_("Ajouter votre réponse");?></span>
 
-<form class="answer_form" onsubmit="return false">
-	<textarea id="answer_content" name="answer_content"></textarea>
-	<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
-</form>
+	<? if( $connected ): ?>
+
+	<form class="answer_form" onsubmit="return false">
+		<textarea id="answer_content" name="answer_content"></textarea>
+		<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
+	</form>
+
+	<? else: ?>
+	
+		<div style="text-align:center;font-size:14px">
+			<a href="<?=\kinaf\routes::url_to("user","login");?>">
+				<?=_("Pour ajouter votre réponse vous devez être connecté");?>
+			</a>
+		</div>
+
+	<? endif;?>
 
 <? endif; ?>
 
@@ -145,6 +168,10 @@
 	});
 	
 <? else: ?>
+
+	$(".questionVote").click(function(){
+		displayError("<?=_("Vous devez être connecté pour voter pour une question");?>");
+	});
 
 <? endif; ?>
 
