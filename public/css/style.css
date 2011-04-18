@@ -373,13 +373,24 @@ a:hover {
 /* modification for kinasoc */
 
 .question {
-	height: 50px;
-	margin-bottom:20px;
+	margin:5px 0;
+	padding: 5px 0;
+	border-bottom: 1px dotted black;
+}
+
+.question .left_container{
+	float: left;
+	width: 180px;
+}
+
+.question .right_container{
+	float: left;
+	width: 470px;
 }
 
 .question h1 {
-	font-size:18px;
-	margin-bottom: 10px;
+	font-size:15px;
+	margin-bottom: 5px;
 }
 
 .question div{
@@ -515,7 +526,7 @@ span.tag{
 	border-radius: 5px;
 	padding: 4px !important;
 	display: inline !important;
-	font-size: 12px !important;
+	font-size: 11px !important;
 	font-style: normal !important;
 	background-color: #42AEC2;
 	color: #fff;
@@ -607,4 +618,15 @@ h3.register{
 a.register{
 	padding-left: 30px;
 	font-size: 23px;
+}
+
+#scrollDetector{
+	width: 100%;
+	height:20px;
+}
+
+.loading{
+	text-align: center;
+	display:none;
+	font-weight: bold;
 }

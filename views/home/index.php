@@ -1,54 +1,43 @@
-<?
-foreach($questions as $question):
-	?>
-	<div class="question">
-		<div class="votes">
-			<span class="number">
-				<?=$question->getVote();?>
-			</span>
-			<span class="label">
-				<?=ngettext("Vote","Votes",$question->getVote());?>
-			</span>
-		</div>
-		
-		<div class="answers">
-			<span class="number">
-				<?=$question->getNbAnswers();?>
-			</span>
-			<span class="label">
-				<?=ngettext("Réponse","Réponses",$question->getNbAnswers());?>
-			</span>
-		</div>
-		
-		<div class="views">
-			<span class="number">
-				<?=$question->views;?>
-			</span>
-			<span class="label">
-				<?=ngettext("Vue","Vues",$question->views);?>
-			</span>
-		</div>
-		
-		<div class="right_container">
-			<h1><a href="<?=\kinaf\routes::url_to("question","view",$question);?>"><?=$question->title;?></a></h1>
-			<span class="tags">
-				<?
-				foreach($question->getTags() as $tag):
-					?>
-					<a href="<?=\kinaf\routes::url_to("tags","filter",$tag);?>"><span class="tag"><?=$tag;?></span></a>
-					<?
-				endforeach;
-				?>
-			</span>
-			<div style="width:100px;float:right;background-color:#E7EBF7;height:auto;margin-top:-11px;padding:1px">
-				<span style="margin-right:10px;">
-					<img style="float:left;margin-right:5px" src="<?=$question->user->get_gravatar("30");?>" />
-					<?=$question->user->login;?><br />
-					<?=$question->user->getPoints();?>
-				</span>
-			</div>
-		</div>
+<div id="questions">
+
+</div>
+<div id="scrollDetector">
+	<div class="loading">
+		<p><?=_("Chargement")?></p>
+		<img src="/images/loading_bar.gif" />
 	</div>
-	<?
-endforeach;
-?>
+</div>
+<script>
+
+var loading = 0;
+var current_page = 1;
+var question_type = '<?=$question_type;?>';
+var max_page = <?=$maxPage;?>;
+
+function isScrolledIntoView(elem){
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(elem).offset().top;
+    var elemBottom = elemTop + $(elem).height();
+
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+}
+
+	$(window).scroll(function(){
+		if(isScrolledIntoView($("#scrollDetector")) && loading == 0 && current_page < max_page ){
+			loading = 1;
+			current_page = current_page + 1;
+			$("#scrollDetector").find(".loading").show();
+			$.get("<?=\kinaf\routes::url_to("home","question_ajax");?>",{'questionType':question_type,<?if(isset($tag)){echo "'tag':".$tag->id.",";}?>'currentPage': current_page},function(data){
+				loading = 0;
+				$("#scrollDetector").find(".loading").hide();
+				$("#questions").append(data);
+			});
+		}
+	});
+	
+$(document).ready(function(){
+	$("#questions").load("<?=\kinaf\routes::url_to("home","question_ajax");?>",{'questionType':question_type<?if(isset($tag)){echo ",'tag':".$tag->id.",";}?>});
+});
+</script>

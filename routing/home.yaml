@@ -1,3 +1,5 @@
 home:
   index:
     url: /
+  question_ajax:
+    url: /questions.ajax

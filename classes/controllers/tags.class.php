@@ -17,14 +17,12 @@
 		
 		public function filterAction($id){
 			$tag = new tag($id);
-			$questions = array();
-			$q = $this->pdo->query("select question from question_tag where tag = ".$tag->id);
-			if($q->rowCount()>0){
-				foreach($q as $row){
-					array_push($questions,new question($row['question']));
-				}
-			}
-			$this->add("questions",$questions);
+			
+			$maxPage = min(10,ceil(question::byTagCount($tag) / $this->params['questionsPerPage']));
+			
+			$this->add("maxPage",$maxPage);
+			$this->add("question_type","tag");
+			$this->add("tag",$tag);
 			$this->render_view("home","index");
 		}
 	}
