@@ -44,7 +44,7 @@
 		
 		public function getAnswers(){
 			$ret = array();
-			$q = $this->pdo->query("SELECT answer.id,coalesce(sum(value),0) as vote FROM answer_vote right join answer on answer.id = answer_vote.answer where answer.question = ".$this->id." group by answer.id order by accepted desc,vote desc");
+			$q = $this->pdo->query("SELECT answer.id,coalesce(sum(value),0) as vote FROM vote right join answer on answer.id = vote.answer where answer.question = ".$this->id." group by answer.id order by accepted desc,vote desc");
 			if( $q->rowCount() > 0 ):
 				foreach($q as $row):
 					array_push($ret,new \application\answer($row['id']));
