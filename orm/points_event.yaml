@@ -1,0 +1,9 @@
+fields:
+  identifier: 
+    type: varchar
+  points: 
+    type: int
+  label: 
+    type: varchar
+constraints:
+  id: { integer: 'true' }

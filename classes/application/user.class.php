@@ -46,7 +46,8 @@
 		}
 		
 		public function getPoints(){
-			return 1500;
+			$q = $this->pdo->query("SELECT coalesce(sum(points),0) as points FROM points_event e,points p WHERE p.event = e.id and p.user = ".$this->id)->fetch();
+			return $q['points'];
 		}
 		
 		public function loginProcess(){
@@ -58,6 +59,17 @@
 			}
 			$this->lastLogin = date("d/m/Y G:i:s");
 			$this->save();
+		}
+		
+		public function givePoints($event,$vote = null){
+			
+			if(!is_null($vote)){
+				$vote = $vote->id;
+			} else {
+				$vote = "NULL";
+			}
+			
+			$this->pdo->exec("insert into points (user,event,date,vote) values (".$this->id.",".$event->id.",now(),".$vote.")");
 		}
 		
 		/**

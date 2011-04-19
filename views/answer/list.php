@@ -5,8 +5,8 @@ if(count($answers)>0):
 	<?
 	foreach($answers as $answer):
 		?>
-		<div class="answer_row deletable <?if($answer->isAccepted()){echo "accepted";}?>">
-			<span class="deletable_handle"></span>
+		<div class="answer_row <? if( $connected && $answer->isDeletable($connected_user) ){ echo "deletable"; } ;?> <?if($answer->isAccepted()){echo "accepted";}?>">
+			<span class="deletable_handle" type="reponse" rel="<?=$answer->id;?>"></span>
 			<div class="answer_vote">
 				<?
 				if($answer->isAccepted()):
@@ -73,8 +73,6 @@ if(count($answers)>0):
 					<div style="clear:both"></div>
 				</form>
 			</div>
-			
-			<span class="separator"></span>
 		</div>
 		<?
 	endforeach;

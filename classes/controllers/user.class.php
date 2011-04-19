@@ -80,6 +80,7 @@
 						$u->creationDate = date("d/m/Y G:i:s");
 						$u->openid_identifier = $_REQUEST['openid_identity'];
 						$u->save();
+						$u->givePoints(new \application\points_event(7));
 						$u->loginProcess();
 						\kinaf\routes::redirect_to("user","create_login");
 					}

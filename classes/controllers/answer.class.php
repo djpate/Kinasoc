@@ -7,7 +7,7 @@ namespace controllers;
 		public function deleteAction(){
 			$a = new \application\answer($_REQUEST['id']);
 			if( $this->connected ):
-				if ( $this->connected_user == $a->user ):
+				if ( $a->isDeletable($this->connected_user) ):
 					$a->delete();
 				else:
 					header('HTTP/1.1 403 Forbidden');

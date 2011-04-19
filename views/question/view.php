@@ -1,5 +1,5 @@
-<div class="question_view deletable">
-<span class="deletable_handle"></span>
+<div class="question_view <? if( $connected && $question->user->id == $connected_user->id ) { echo "deletable"; }?>">
+<span class="deletable_handle" type="question"></span>
 	<div class="vote">
 		<img src="/images/thumbs_up.png" class="link questionVote" rel="up"/>
 		<span id="question_vote_value">
@@ -222,6 +222,21 @@ $(".deletable").live("mouseover mouseout",function(event){
 	
 	}
 	
+});
+
+$(".deletable_handle").live('click',function(){
+	switch($(this).attr('type')){
+		case 'question':
+			$.post("<?=\kinaf\routes::url_to("question","delete",$question);?>",function(data){
+				location.href = "<?=\kinaf\routes::url_to("home","index");?>";
+			});
+		break;
+		case 'reponse':
+			$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
+				reloadAnswers();
+			});
+		break;
+	}
 });
 
 </script>

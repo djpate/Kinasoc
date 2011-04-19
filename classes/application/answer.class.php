@@ -40,5 +40,13 @@
 			return $ret;
 		}
 		
+		public function isDeletable(User $u){ //permettra plus tard de gerer les modos
+			if( $u->id == $this->user->id){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
 	}
 ?>
