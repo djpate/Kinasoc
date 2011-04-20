@@ -61,28 +61,34 @@
 						$_SESSION['account']['id'] = $user->id;
 						\kinaf\routes::redirect_to("home","index");
 					} else {
-						// new account
 						$attributes = $client->getAttributes();
-						$u = new \application\user();
-						foreach($attributes as $id => $attribute):
-							switch($id){
-								case 'contact/email':
-									$u->email =$attribute;
-								break;
-								case 'namePerson/first':
-									$u->first =$attribute;
-								break;
-								case 'namePerson/last':
-									$u->last =$attribute;
-								break;
-							}
-						endforeach;
-						$u->creationDate = date("d/m/Y G:i:s");
-						$u->openid_identifier = $_REQUEST['openid_identity'];
-						$u->save();
-						$u->givePoints(new \application\points_event(7));
-						$u->loginProcess();
-						\kinaf\routes::redirect_to("user","create_login");
+						$user = \application\user::getByemail($attributes['contact/email']);
+						if( is_object($user) ){
+							$user->addOpenidAccount($_REQUEST['openid_identity']);
+							$_SESSION['account']['id'] = $user->id;
+							\kinaf\routes::redirect_to("home","index");
+						} else {
+							$u = new \application\user();
+							foreach($attributes as $id => $attribute):
+								switch($id){
+									case 'contact/email':
+										$u->email =$attribute;
+									break;
+									case 'namePerson/first':
+										$u->first =$attribute;
+									break;
+									case 'namePerson/last':
+										$u->last =$attribute;
+									break;
+								}
+							endforeach;
+							$u->creationDate = date("d/m/Y G:i:s");
+							$u->save();
+							$u->addOpenidAccount($_REQUEST['openid_identity']);
+							$u->givePoints(new \application\points_event(7));
+							$u->loginProcess();
+							\kinaf\routes::redirect_to("user","create_login");
+						}
 					}
 				}
 			}
@@ -154,6 +160,34 @@
 				endif;
 			else:
 				echo "err_1"; // not connected
+			endif;
+		}
+		
+		public function forgot_pwdAction(){
+			if( isset($_POST['email']) && isset($_REQUEST['recaptcha_challenge_field']) && isset($_REQUEST['recaptcha_response_field']) ):
+				if( $this->verifyCaptcha($_REQUEST['recaptcha_challenge_field'],$_REQUEST['recaptcha_response_field']) ):
+					$u = \application\user::getByemail($_POST['email']);
+					if( !is_null($u) && $u->password != "" ): // we verify that the user exists and that it's not an openid account
+						$pass = \application\user::generatePassword();
+						$u->password = hash("sha512",$pass);
+						$u->save();
+						
+						$message = \Swift_Message::newInstance();
+						$message->setSubject(_("Votre nouveau mot de passe"));
+						$message->setFrom(array("info@kinasoc.com" => "Kinasoc"));
+						$message->setTo(array($u->email));
+						$message->setBody(sprintf(_("Votre nouveau mot de passe %s"),$pass));
+						$this->mailer->send($message);
+	
+						echo "ok";
+					else:
+						echo "err_2"; // user not found
+					endif;
+				else:
+					echo "err_1"; //invalid captcha
+				endif;
+			else:
+				$this->render();
 			endif;
 		}
 		

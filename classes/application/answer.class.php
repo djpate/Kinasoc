@@ -44,8 +44,15 @@
 				$v->accepted = $this->id;
 				$v->save();
 				
-				$this->user->givePoints(new points_event(5),$v);
-				$this->question->user->givePoints(new points_event(6),$v);
+				$connected_user = user::connected();
+				
+				if( $this->user != $connected_user ){ // we dont give points if you answer your own question
+				
+					$this->user->givePoints(new points_event(5),$v);
+					$this->question->user->givePoints(new points_event(6),$v);	
+					
+				} 
+				
 				
 			}
 								

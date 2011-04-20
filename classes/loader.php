@@ -7,9 +7,13 @@
 	
 	/* autoload dans classes */
 	
-	function __autoload($class_name) {
+	require dirname(__FILE__)."/libs/swift/swift_required.php";
+	
+	function kinafAutoload($class_name) {
 		require_once dirname(__FILE__) . "/" . str_replace('\\', '/', strtolower($class_name)) . '.class.php';
 	}
+	
+	spl_autoload_register(kinafAutoload);
 	
 	function date_en_to_fr($date_en){
 		$d = explode("-",$date_en);

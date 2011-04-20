@@ -63,6 +63,7 @@
 							break;
 							case 'err_4':
 								displayError("<?=_("Le code de vérification est erroné");?>");
+								Recaptcha.reload();
 							break;
 							case 'err_5':
 								displayError("<?=_("L'adresse email est invalide");?>");

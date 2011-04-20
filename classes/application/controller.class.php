@@ -18,6 +18,9 @@
 			
 			$this->add("popularTags",tag::popular());
 			
+			$transport = \Swift_SmtpTransport::newInstance('localhost', 25);
+			$this->mailer = \Swift_Mailer::newInstance($transport);
+			
 			if($this->connected){
 				$this->connected_user = user::connected();
 				$this->add("connected_user",$this->connected_user);

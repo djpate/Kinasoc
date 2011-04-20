@@ -1,4 +1,4 @@
-<h2 class="title"><?=_("Connexion à votre compte");?></h1>
+<h2 class="title"><?=_("Connexion à votre compte");?></h2>
 
 <h3 class="register"><?=_("Si vous avez un compte sur l'un des sites ci-dessous cliquer sur le logo pour vous connecter");?></h3>
 

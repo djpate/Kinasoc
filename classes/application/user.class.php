@@ -12,6 +12,21 @@
 			}
 		}
 		
+		public static function generatePassword(){
+			return "okichris";
+		}
+		
+		public static function getByopenid_identifier($identifier){
+			$pdo = \kinaf\db::singleton();
+			$q = $pdo->query("select user from user_openid where openid_identifier = ".$pdo->quote($identifier));
+			if($q->rowCount() == 1){
+				$q = $q->fetch();
+				return new user($q['user']);
+			} else {
+				return null;
+			}
+		}
+		
 		public static function connected(){
 			if(static::isConnected()){
 				return new user($_SESSION['account']['id']);
@@ -70,6 +85,10 @@
 			}
 			
 			$this->pdo->exec("insert into points (user,event,date,vote) values (".$this->id.",".$event->id.",now(),".$vote.")");
+		}
+		
+		public function addOpenidAccount($identifier){
+			$this->pdo->exec("insert into user_openid (user,openid_identifier) values (".$this->id.",".$this->pdo->quote($identifier).")");
 		}
 		
 		/**
