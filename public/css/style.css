@@ -630,3 +630,46 @@ a.register{
 	display:none;
 	font-weight: bold;
 }
+
+.tabs_container{
+	border-bottom: 5px solid #2AA1CC;
+	margin-bottom: 10px;
+	line-height: 22px;
+}
+
+.tabs_container h2{
+	float: left;
+	font-size: 22px;
+}
+
+.tabs_container ul{
+	display: inline;
+	list-style-type: none;
+	float: right;
+	margin:0;
+	padding:0;
+}
+
+.tabs_container li{
+	padding: 8px;
+	display: inline;
+	font-size: 17px;
+	cursor: pointer;
+}
+
+.tabs_container li.selected, .tabs_container li:hover{
+	background-color: #2AA1CC;
+	color: #fff;
+}
+
+.tabs_content{
+	overflow:hidden;
+}
+
+.tabs_content div{
+	display: none;
+}
+
+.tabs_content div:first-child{
+	display: block;
+}

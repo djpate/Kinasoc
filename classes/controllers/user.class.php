@@ -191,6 +191,12 @@
 			endif;
 		}
 		
+		public function ficheAction($id){
+			$user = new \application\user($id);
+			$this->add("user",$user);
+			$this->render();
+		}
+		
 		private function verifyCaptcha($challenge,$response){
 			$handle = curl_init("http://www.google.com/recaptcha/api/verify");
 			$post = array("privatekey"=>$this->params['reCaptcha_private'],
