@@ -7,6 +7,15 @@ function displayError(msg){
 	});
 }
 
+function displayConfirmation(msg){
+	jQuery('body').showMessage({
+		delayTime:	2000,
+		autoClose:	true,
+		className:	'success',
+		'thisMessage': [msg]
+	});
+}
+
 function is_int(input){
 	return !isNaN(input)&&parseInt(input)==input;
 }

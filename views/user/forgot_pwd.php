@@ -37,7 +37,8 @@
 		submitHandler: function(form){
 			$.post("<?=\kinaf\routes::url_to("user","forgot_pwd");?>",$("#forgotpwd").serialize(),function(data){
 				if(data == "ok"){
-					displayError("<?=_("ok");?>");
+					displayConfirmation("<?=_("Un email contenant votre nouveau mot de passe vient de vous être envoyé");?>");
+					$("#forgotpwd")[0].reset();
 				} else if( data == "err_1"){
 					displayError("<?=_("Le code de vérification est erroné");?>");
 					Recaptcha.reload();
