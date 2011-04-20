@@ -19,22 +19,30 @@
 			else:
 				if($value == "1" or $value == "-1"):
 					
-					if($value=="1"){
-						if(static::$table=="question"){
+					if($value=="1"):
+						if( static::$table=="question" ):
 							$event = new points_event(3);
-						} else if(static::$table=="answer" ) {
+						elseif( static::$table=="answer" ):
 							$event = new points_event(1);
-						}
-					} else {
-						if(static::$table=="question"){
+						endif;
+					else:
+						if( static::$table=="question" ):
 							$event = new points_event(4);
-						} else if(static::$table=="answer" ) {
+						elseif( static::$table=="answer" ):
 							$event = new points_event(2);
-						}
-					}
+						endif;
+					endif;
 					
-					$this->pdo->exec("insert into vote (".static::$table.",user,value,date)
-									values (".$this->id.",".$u->id.",".$value.",now())");
+					$obj = static::$table;
+					
+					$v = new Vote();
+					$v->user = $u;
+					$v->$obj = $this;
+					$v->value = $value;
+					$v->date = date("d/m/Y G:i:s");
+					$v->save();
+									
+					$this->user->givePoints($event,$v);
 									
 				else:
 					
