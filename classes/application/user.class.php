@@ -13,7 +13,13 @@
 		}
 		
 		public static function generatePassword(){
-			return "okichris";
+			$possiblevalues = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			$length = 6;
+			$str = "";
+			while(strlen($str) != $length){
+				$str .= $possiblevalues[mt_rand(0,strlen($possiblevalues)-1)];
+			}
+			return $str;
 		}
 		
 		public static function getByopenid_identifier($identifier){
