@@ -3,6 +3,8 @@ fields:
     type: object
   answer:
     type: object
+  accepted:
+    type: int
   value: 
     type: int
   user: 

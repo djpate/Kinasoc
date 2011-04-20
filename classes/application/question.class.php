@@ -6,7 +6,12 @@
 		protected static $table = "question";
 		
 		public function isAnswered(){
-			return false;
+			$q = $this->pdo->query("select * from answer where accepted = 1 and question = ".$this->id);
+			if($q->rowCount()==1){
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		public static function hottest($offset=null,$limit=null){
@@ -44,7 +49,7 @@
 		
 		public function getAnswers(){
 			$ret = array();
-			$q = $this->pdo->query("SELECT answer.id,coalesce(sum(value),0) as vote FROM vote right join answer on answer.id = vote.answer where answer.question = ".$this->id." group by answer.id order by accepted desc,vote desc");
+			$q = $this->pdo->query("SELECT answer.id,coalesce(sum(value),0) as vote FROM vote right join answer on answer.id = vote.answer where answer.question = ".$this->id." group by answer.id order by answer.accepted desc,vote desc");
 			if( $q->rowCount() > 0 ):
 				foreach($q as $row):
 					array_push($ret,new \application\answer($row['id']));

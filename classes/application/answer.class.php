@@ -15,16 +15,40 @@
 		
 		public function toggleAccepted(){
 			
-			$this->pdo->exec("update answer 
-								set accepted = 0 
-								where question = ".$this->question->id);
-			// since this a toggle if the answer was allready accepted
-			// we stop here
-			if( !$this->accepted ):
-				$this->pdo->exec("update answer 
-									set accepted = 1 
-									where id = ".$this->id);
-			endif;
+			if( $this->isAccepted() ){
+				
+				
+				// the answer is accepted so we need to unaccept it 
+				// and remove the points that we gave
+				
+				$this->accepted = 0;
+				$this->save();
+				
+				$this->pdo->exec("delete from vote where accepted = ".$this->id);
+				
+			} else {
+				
+				if ( $this->question->isAnswered() ){
+					// an answer is allready accepted so we need to unaccept it
+					// and remove the points
+					
+					$this->pdo->exec("update answer set accepted = 0 where question = ".$this->question->id);
+					$this->pdo->exec("delete from vote where accepted = ".$this->id);
+					
+				}
+				
+				$this->accepted = 1;
+				$this->save();
+				
+				$v = new Vote();
+				$v->accepted = $this->id;
+				$v->save();
+				
+				$this->user->givePoints(new points_event(5),$v);
+				$this->question->user->givePoints(new points_event(6),$v);
+				
+			}
+								
 		}
 		
 		public function getComments(){
