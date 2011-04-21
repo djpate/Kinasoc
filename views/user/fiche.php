@@ -12,35 +12,54 @@
 
 <div class="tabs_content">
 
-	<div class="info">
+	<div class="info tcontent">
 		<img src="<?=$user->get_gravatar(225);?>" />
 	</div>
 
-	<div class="reputation">
-		reput
+	<div class="reputation tcontent">
+		<img src="<?=$user->get_gravatar(225);?>" />
+		<br />
+		<img src="<?=$user->get_gravatar(225);?>" />
 	</div>
 
-	<div class="questions">
-		question
+	<div class="questions tcontent">
+		<img src="<?=$user->get_gravatar(225);?>" />
 	</div>
 
-	<div class="answers">
-		answers
+	<div class="answers tcontent">
+		<img src="<?=$user->get_gravatar(225);?>" />
 	</div>
 
-	<div class="favorites">
-		favorites
+	<div class="favorites tcontent">
+		<img src="<?=$user->get_gravatar(225);?>" />
 	</div>
+	
+	<p class="spacer"></p>
 
 </div>
 
 <script>
+	
+	$(".tabs_content").height($(".tabs_content div:visible").height());
+	
 	$(".tabs").click(function(){
-		$(".tabs_content div:visible").animate({marginLeft:'-650px'},'slow',function(){
-			$(".tabs_content div:visible").hide();
-		});
-		$("."+$(this).attr('rel')).css('marginLeft','650');
-		$("."+$(this).attr('rel')).show()
-		$("."+$(this).attr('rel')).animate({marginLeft:'0px'});
+		
+		if(!$(this).hasClass("selected")){
+		
+			$(".tabs.selected").removeClass("selected");
+			$(this).addClass("selected");
+			
+			$(".tabs_content div:visible").animate({left:'-650px'},'slow',function(){
+				$(this).hide();
+			});
+			
+			$(".tabs_content").height($("."+$(this).attr('rel')).height());
+			
+			$("."+$(this).attr('rel')).css('left','650px');
+			$("."+$(this).attr('rel')).show();
+			$("."+$(this).attr('rel')).animate({left:'0'});
+		
+		}
+		
 	});
 </script>

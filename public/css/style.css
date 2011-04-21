@@ -664,10 +664,13 @@ a.register{
 
 .tabs_content{
 	overflow:hidden;
+	position:relative;
 }
 
 .tabs_content div{
 	display: none;
+	position:absolute;
+	top:0;
 }
 
 .tabs_content div:first-child{
