@@ -13,7 +13,54 @@
 <div class="tabs_content">
 
 	<div class="info tcontent">
-		<img src="<?=$user->get_gravatar(225);?>" />
+		<div class="avatar_big">
+			<img src="<?=$user->get_gravatar(225);?>" />
+		</div>
+		<div class="user_info">
+			
+			<div class="info_row">
+				<div class="title"><?=_("Login");?></div>
+				<div class="value"><?=$user->login;?></div>
+				<div style="clear:both"></div>
+			</div>	
+			
+			<div class="info_row">
+				<div class="title"><?=_("Member since");?></div>
+				<div class="value"><?=$user->ago();?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div class="info_row">
+				<div class="title"><?=_("Asked");?></div>
+				<div class="value"><?=$user->nbQuestions();?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div class="info_row">
+				<div class="title"><?=_("Answered");?></div>
+				<div class="value"><?=$user->nbAnswers();?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div class="info_row">
+				<div class="title"><?=_("Last seen");?></div>
+				<div class="value"><?=$user->login;?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div class="info_row">
+				<div class="title"><?=_("Blog");?></div>
+				<div class="value"><?=$user->login;?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div class="info_row">
+				<div class="title"><?=_("Réputation");?></div>
+				<div class="value"><?=$user->getPoints();?></div>
+				<div style="clear:both"></div>
+			</div>
+			
+		</div>
 	</div>
 
 	<div class="reputation tcontent">
@@ -39,6 +86,8 @@
 </div>
 
 <script>
+	
+	$(".tabs_content div:first").show();
 	
 	$(".tabs_content").height($(".tabs_content div:visible").height());
 	

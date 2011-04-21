@@ -113,6 +113,71 @@
 			$url .= "?s=$s&d=$d&r=$r";
 			return $url;
 		}
+		
+		public function ago(){
+			
+			$time_ago = strtotime(datetime_fr_to_en($this->creationDate));
+			$time_now = time();
+			
+			$diff = $time_now - $time_ago;
+			
+			if($diff < 60){ // seconds
+			
+				$ret = sprintf(ngettext("Il y a %s seconde","Il y a %s secondes",$diff),$diff);
+				
+			} else if($diff < 3600){ // minutes
+				
+				$diff = round($diff / 60);
+				
+				$ret = sprintf(ngettext("Il y a %s minute","Il y a %s minutes",$diff),$diff);
+				
+			} else if($diff < 86400){ // hours
+			
+				$diff = round($diff / 60 / 60);
+				
+				$ret = sprintf(ngettext("Il y a %s heure","Il y a %s heures",$diff),$diff);
+			
+			} else if($diff < 604800){ // days
+				
+				$diff = round($diff / 60 / 60 / 7);
+				
+				$ret = sprintf(ngettext("Il y a %s jour","Il y a %s jours",$diff),$diff);
+				
+				
+			} else if($diff < 2419200){
+				
+				$diff = round($diff / 60 / 60 / 24 / 7);
+				
+				$ret = sprintf(ngettext("Il y a %s semaine","Il y a %s semaines",$diff),$diff);
+				
+			} else if($diff < 31536000){ //$month
+				
+				$diff = round($diff / 60 / 60 / 24 / 30 );
+				
+				$ret = sprintf(ngettext("Il y a %s mois","Il y a %s mois",$diff),$diff);
+				
+			} else { //years
+				
+				$diff = round($diff / 60 / 60 / 24 / 365);
+				
+				$ret = sprintf(ngettext("Il y a %s ans","Il y a %s ans",$diff),$diff);
+				
+			}
+			
+			return $ret;
+			
+			
+		}
+		
+		public function nbQuestions(){
+			$q = $this->pdo->query("select count(*) as cb from question where user = ".$this->id)->fetch();
+			return $q['cb'];
+		}
+		
+		public function nbAnswers(){
+			$q = $this->pdo->query("select count(*) as cb from answer where accepted = 1 and user = ".$this->id)->fetch();
+			return $q['cb'];
+		}
 
 		
 	}

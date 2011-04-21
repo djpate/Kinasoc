@@ -667,12 +667,36 @@ a.register{
 	position:relative;
 }
 
-.tabs_content div{
+.tabs_content .tcontent{
 	display: none;
 	position:absolute;
 	top:0;
 }
 
-.tabs_content div:first-child{
-	display: block;
+.avatar_big{
+	float:left;
+	margin-right: 20px;
+}
+
+.user_info{
+	float:left;
+}
+
+.user_info div.title{
+	font-weight: bold;
+	width: 200px;
+	font-size: 13px;
+	float:left;
+}
+
+.user_info div.value{
+	float:left;
+}
+
+.info_row{
+	margin: 20px 0;
+}
+
+.info_row:first-child{
+	margin-top: 0px;
 }
