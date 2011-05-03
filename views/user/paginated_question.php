@@ -1,5 +1,8 @@
 <?
 include(dirname(__FILE__)."/../home/question_ajax.php");
+if(count($questions)==0){
+	echo _("Aucune question trouvé");
+}
 ?>
 <div class="paginationContent">
 <?

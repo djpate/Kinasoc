@@ -5,9 +5,9 @@
 					<ul>
 						<li>
 							<div id="search" >
-								<form method="get" action="#">
+								<form method="get" action="<?=\kinaf\routes::url_to("question","search");?>">
 									<div>
-										<input type="text" name="s" id="search-text" value="" />
+										<input type="text" name="q" id="search-text" value="<?=strip_tags(htmlentities($_REQUEST['q']));?>" />
 										<input type="submit" id="search-submit" value="GO" />
 
 									</div>
@@ -16,7 +16,7 @@
 							<div style="clear: both;">&nbsp;</div>
 						</li>
 						<li>
-							<h2>Aliquam tempus</h2>
+							<h2><?=_("Qui sommes nous ?");?></h2>
 							<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
 
 						</li>

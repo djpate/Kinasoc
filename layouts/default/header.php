@@ -73,7 +73,6 @@ Released   : 20100529
 					<li><a href="<?=\kinaf\routes::url_to("question","new");?>"><?=_("Posez une question");?></a></li>
 					
 					<li><a href="#"><?=_("Tags");?></a></li>
-					<li><a href="#"><?=_("Badges");?></a></li>
 					<li><a href="#"><?=_("A propos");?></a></li>
 				</ul>
 

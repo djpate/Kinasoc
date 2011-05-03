@@ -15,5 +15,7 @@ fields:
     type: datetime
   presence:
     type: int
+  website:
+    type: varchar
 constraints:
   id: { integer: 'true' }

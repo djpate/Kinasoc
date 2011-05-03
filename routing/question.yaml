@@ -16,3 +16,7 @@ question:
     reg:
       - ([0-9]+)
       - .*
+  search:
+    url: /question/search
+  search_ajax:
+    url: /question/search-ajax

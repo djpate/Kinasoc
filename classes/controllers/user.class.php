@@ -194,7 +194,60 @@
 		public function ficheAction($id){
 			$user = new \application\user($id);
 			$this->add("user",$user);
+			$this->add("points",$user->getReputationPoints());
 			$this->render();
+		}
+		
+		public function ficheQuestionAjaxAction($id){
+			
+			$user = new \application\user($id);
+			
+			if(isset($_REQUEST['page'])){
+				$page = $_REQUEST['page'];
+			} else {
+				$page = 1;
+			}
+			
+			$offset = ($page - 1) * $this->params['questionsPerPageOnFiche'];
+			
+			$pagination = new \kinaf\pagination();
+			$pagination->setCurrentPage($page);
+			$pagination->setMaxPage( ceil( $user->nbQuestions() / $this->params['questionsPerPageOnFiche'] ) );
+
+			$questions = $user->getQuestions($offset,$this->params['questionsPerPageOnFiche']);
+			
+			$this->add("route",\kinaf\routes::url_to("user","ficheQuestionAjax",$user));
+			$this->add("pagination",$pagination);
+			$this->add("questions",$questions);
+			
+			$this->render_view("user","paginated_question","ajax");
+			
+		}
+		
+		public function ficheAnswerAjaxAction($id){
+			
+			$user = new \application\user($id);
+			
+			if(isset($_REQUEST['page'])){
+				$page = $_REQUEST['page'];
+			} else {
+				$page = 1;
+			}
+			
+			$offset = ($page - 1) * $this->params['questionsPerPageOnFiche'];
+
+			$pagination = new \kinaf\pagination();
+			$pagination->setCurrentPage($page);
+			$pagination->setMaxPage( ceil( $user->nbAnswers() / $this->params['questionsPerPageOnFiche'] ) );
+
+			$questions = $user->getAnswered($offset,$this->params['questionsPerPageOnFiche']);
+			
+			$this->add("route",\kinaf\routes::url_to("user","ficheAnswerAjax",$user));
+			$this->add("pagination",$pagination);
+			$this->add("questions",$questions);
+			
+			$this->render_view("home","question_ajax","ajax");
+			
 		}
 		
 		private function verifyCaptcha($challenge,$response){

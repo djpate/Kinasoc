@@ -26,4 +26,12 @@ user:
     reg: 
       - ([0-9]+)
       - (.*)
+  ficheQuestionAjax:
+    url: /user/questions/{id}
+    reg:
+      - ([0-9]+)
+  ficheAnswerAjax:
+    url: /user/answered/{id}
+    reg:
+      - ([0-9]+)  
    

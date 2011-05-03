@@ -102,6 +102,38 @@ use \application\tag as tag;
 			endif;
 		}
 		
+		public function searchAction(){
+			$this->render();
+		}
+		
+		public function search_ajaxAction(){
+			if(isset($_REQUEST['q']) && $_REQUEST['q'] != ""){
+					
+				if(isset($_REQUEST['page'])){
+					$page = $_REQUEST['page'];
+				} else {
+					$page = 1;
+				}
+				
+				$offset = ($page - 1) * $this->params['questionsPerPageSearch'];
+
+				$pagination = new \kinaf\pagination();
+				$pagination->setCurrentPage($page);
+				$pagination->setMaxPage( ceil( \application\question::searchCount($_REQUEST['q']) / $this->params['questionsPerPageSearch'] ) );
+
+				$questions = \application\question::search($_REQUEST['q'],$offset,$this->params['questionsPerPageSearch']);
+				
+				$this->add("route",\kinaf\routes::url_to("question","search_ajax")."?q=".$_REQUEST['q']);
+				$this->add("pagination",$pagination);
+				$this->add("questions",$questions);
+				
+				$this->render_view("user","paginated_question","ajax");
+				
+			} else {
+				\kinaf\routes::redirect_to("home","index");
+			}
+		}
+		
 		public function deleteAction($id){
 			$q = new \application\question($id);
 			if( $this->connected ):

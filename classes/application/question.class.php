@@ -34,6 +34,37 @@
 			return $q['cnt'];
 		}
 		
+		public static function search($q,$offset,$limit){
+			
+			$ret = array();
+			
+			$yamlparser = new \libs\yaml\sfYamlParser();
+			$params = $yamlparser->parse(file_get_contents(dirname(__file__)."/../../configuration/params.yaml"));
+			
+			$s = new \SphinxClient;
+			$s->setServer($params['sphinx_host'], $params['sphinx_port']);
+			$s->setMatchMode(SPH_MATCH_ANY);
+			$s->setLimits($offset,$limit);
+			$result = $s->query($q);
+			
+			foreach($result['matches'] as $id => $info){
+				array_push($ret,new \application\question($id));
+			}
+			
+			return $ret;
+		}
+		
+		public static function searchCount($q){
+			
+			$yamlparser = new \libs\yaml\sfYamlParser();
+			$params = $yamlparser->parse(file_get_contents(dirname(__file__)."/../../configuration/params.yaml"));
+			
+			$s = new \SphinxClient;
+			$s->setServer($params['sphinx_host'], $params['sphinx_port']);
+			$s->setMatchMode(SPH_MATCH_ANY);
+			$result = $s->query($q);
+			return $result['total_found'];
+		}
 		
 		
 		public function getTags(){

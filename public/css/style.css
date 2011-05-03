@@ -149,7 +149,7 @@ a:hover {
 
 #menu {
 	float: right;
-	width: 474px;
+	width: auto;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0;
@@ -662,15 +662,19 @@ a.register{
 	color: #fff;
 }
 
-.tabs_content{
+.tabs_content_container{
+	width:650px;
 	overflow:hidden;
-	position:relative;
+}
+
+.tabs_content{
+	width: 1000000px;
 }
 
 .tabs_content .tcontent{
 	display: none;
-	position:absolute;
-	top:0;
+	width: 650px;
+	float:left;
 }
 
 .avatar_big{
@@ -699,4 +703,63 @@ a.register{
 
 .info_row:first-child{
 	margin-top: 0px;
+}
+
+.paginationContent{
+	float:left;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+}
+
+ul.kinafPagination {
+	border:0; 
+	margin:0; 
+	padding:0;
+	clear:left;
+	float:left;
+	position:relative;
+	left:50%;
+	text-align:center;
+}
+
+.kinafPagination li{
+	border:0;
+	margin:0;
+	padding:0;
+	font-size:11px;
+	list-style:none;
+	margin-right:2px;
+	float:left;
+	border:solid 1px #9aafe5;
+	cursor: pointer;
+	padding: 5px 10px;
+	color:#0e509e;
+	position:relative;
+	right:50%;
+}
+
+.kinafPagination li.active{
+	color:#fff;
+	background-color:#2e6ab1;
+}
+
+span.powerup, span.powerdown{
+	display: inline-block;
+	font-size: 16px;
+	width: 40px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+span.powerdown{
+	color: red;
+}
+
+span.powerup{
+	color: green;
+}
+
+span.labelpoint{
+	font-size: 16px;
 }
