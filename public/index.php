@@ -6,6 +6,7 @@
 		echo "Please setup the configuration file";
 	}
 	
+	require("../classes/libs/markdown/markdown.php");
 	require('../configuration/configuration.php');
 	require('../classes/loader.php');
 	

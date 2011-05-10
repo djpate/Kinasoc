@@ -5,6 +5,7 @@
 	class user extends \application\controller{
 		
 		public function loginAction(){
+			$_SESSION['loginCallback'] = $_SERVER['HTTP_REFERER'];
 			$this->render();
 		}
 		
@@ -15,7 +16,8 @@
 		public function local_loginAction(){
 			if(isset($_POST['login']) && isset($_POST['password'])):
 				if(\application\user::login($_POST['login'],$_POST['password'])):
-					\kinaf\routes::redirect_to("home","index");
+					header("location: ".$_SESSION['loginCallback']);
+					//\kinaf\routes::redirect_to("home","index");
 				else:
 					$this->add("error",_("Login / Mot de passe incorrect"));
 					$this->add("login",$_POST['login']);
@@ -58,14 +60,15 @@
 				if($client->validate()){
 					$user = \application\user::getByopenid_identifier($_REQUEST['openid_identity']); 
 					if(is_object($user)){
-						$_SESSION['account']['id'] = $user->id;
-						\kinaf\routes::redirect_to("home","index");
+						$user->loginProcess();
+						header("location: ".$_SESSION['loginCallback']);
+						//\kinaf\routes::redirect_to("home","index");
 					} else {
 						$attributes = $client->getAttributes();
 						$user = \application\user::getByemail($attributes['contact/email']);
 						if( is_object($user) ){
 							$user->addOpenidAccount($_REQUEST['openid_identity']);
-							$_SESSION['account']['id'] = $user->id;
+							$user->loginProcess();
 							\kinaf\routes::redirect_to("home","index");
 						} else {
 							$u = new \application\user();
@@ -248,6 +251,68 @@
 			
 			$this->render_view("home","question_ajax","ajax");
 			
+		}
+
+		public function accountAction(){
+			$this->add("user",$this->connected_user);
+			$this->add("points",$this->connected_user->getReputationPoints());
+			$this->render_view("user","fiche");
+		}
+		
+		public function updateAction(){
+			if( $this->connected ):
+				$this->render();
+			else: 
+				\kinaf\routes::redirect_to("home","index");
+			endif;
+		}
+		
+		public function closeAction(){
+			if( $this->connected ):
+				if($_SERVER['HTTP_REFERER'] == "http://".$_SERVER['SERVER_NAME'].\kinaf\routes::url_to("user","update")){
+					$this->connected_user->logout();
+					$this->connected_user->delete();
+					\kinaf\routes::redirect_to("home","index");
+				} else {
+					echo "CSRF"; // todo write a proper csrf protection
+				}
+				
+			else: 
+				\kinaf\routes::redirect_to("home","index");
+			endif;
+		}
+		
+		public function saveAction(){
+			if( $this->connected ):
+				if( (!empty($_REQUEST['website']) && filter_var($_REQUEST['website'],FILTER_VALIDATE_URL)) or empty( $_REQUEST['website'] ) ){
+					$this->connected_user->website = $_REQUEST['website'];
+					
+					if(isset($_REQUEST['notificationQuestion'])){
+						$this->connected_user->notificationQuestion = 1;
+					} else {
+						$this->connected_user->notificationQuestion = 0;
+					}
+					
+					if(isset($_REQUEST['notificationAnswer'])){
+						$this->connected_user->notificationAnswer = 1;
+					} else {
+						$this->connected_user->notificationAnswer = 0;
+					}
+					
+					if(isset($_REQUEST['newsletter'])){
+						$this->connected_user->newsletter = 1;
+					} else {
+						$this->connected_user->newsletter = 0;
+					}
+					
+					$this->connected_user->save();
+					
+					echo "ok";
+					
+				} else {
+					echo "err_1"; //url ne valide pas
+				}
+			endif;
 		}
 		
 		private function verifyCaptcha($challenge,$response){

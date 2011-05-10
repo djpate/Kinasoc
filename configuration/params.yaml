@@ -15,4 +15,7 @@ questionsPerPageOnFiche: 6
 sphinx_host: 127.0.0.1
 sphinx_port: 9312
 questionsPerPageSearch: 10
-
+mailFromEmail: info@kinasoc.com
+mailFromName: Kinasoc team
+sitename: Kinasoc
+footer: Copyright 2011

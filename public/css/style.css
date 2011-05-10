@@ -375,7 +375,7 @@ a:hover {
 .question {
 	margin:5px 0;
 	padding: 5px 0;
-	border-bottom: 1px dotted black;
+	border-bottom: 2px solid #EFEFEF;
 }
 
 .question .left_container{
@@ -494,6 +494,15 @@ span.separator{
 	padding: 5px;
 }
 
+.answer_row{
+	padding: 10px 0;
+	border-top: 2px solid #EFEFEF;
+}
+
+.noborder{
+	border: 0;
+}
+
 .answer_content {
 	float:left;
 	margin-left: 15px;
@@ -529,6 +538,17 @@ span.tag{
 	font-size: 11px !important;
 	font-style: normal !important;
 	background-color: #42AEC2;
+	color: #fff;
+}
+
+span.user_points{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px !important;
+	display: inline !important;
+	font-size: 11px !important;
+	font-style: normal !important;
+	background-color: #1582AB;
 	color: #fff;
 }
 
@@ -569,20 +589,6 @@ span.tag{
 	position:relative;
 }
 
-.deletable_handle {
-	width:   24px;
-	height:  24px;
-	cursor:  pointer;
-	position: absolute;
-	right: 0;
-	top: 0;
-	display: none!important;
-	padding:0!important;
-	background-image: url(../images/delete.png);
-	background-repeat: no-repeat;
-	background-position: right center;
-	border-top:0 !important;
-}
 
 .accountBar{
 	height: 30px;
@@ -746,9 +752,8 @@ ul.kinafPagination {
 
 span.powerup, span.powerdown{
 	display: inline-block;
-	font-size: 16px;
-	width: 40px;
-	margin-right: 10px;
+	font-size: 14px;
+	width: 30px;
 	margin-bottom: 10px;
 }
 
@@ -762,4 +767,33 @@ span.powerup{
 
 span.labelpoint{
 	font-size: 16px;
+}
+
+span.labeldate{
+	width: 100px;
+	display: inline-block;
+}
+
+span.labelquestion{
+	color: #339CCB;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+span.action_button{
+	display:				inline-block; /* We make it a block element so we can set all the proper paddings and margins: */
+	margin:					0;
+	padding:				10px;
+	background: 			-moz-linear-gradient(100% 100% 90deg, #1782c2, #4ebce2);
+	background: 			-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4EBCE2), to(#1782c2));
+	filter:					progid:DXImageTransform.Microsoft.Gradient(endColorstr='#1782c2', startColorstr='#4ebce2'); /* gradients for IE */
+	border-radius:			15px;
+	-moz-border-radius:		15px;
+	-webkit-border-radius:	15px;
+	/* add some final touches wth the font color and a faint border*/
+	color: 					#FFF;
+	border:					1px solid #b2dbec;
+	border-width: 			1px 0 0 1px;
+	font-size:				13px;
+	font-weight:			bold;
 }

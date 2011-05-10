@@ -79,5 +79,27 @@
 			}
 		}
 		
+		public function isEditable(User $u){ //permettra plus tard de gerer les modos
+			if( $u->id == $this->user->id){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		public function checkNotifications($mailer,$params){
+			if($this->question->user->notificationAnswer == 1){
+				
+				$message = \Swift_Message::newInstance();
+				$message->setSubject(_("Une réponse à votre question vient d'être ajouté !"));
+				$message->setFrom(array($params['mailFromEmail'] => $params['mailFromName']));
+				$message->setTo(array($this->question->user->email));
+				$message->setBody(sprintf(_("Bonjour %s,<br /><br />%s vient de répondre à votre question <a href='%s'>%s</a>.<br /><br />A bientot sur %s !"),$this->question->user->login,$this->user->login,"http://".$_SERVER['SERVER_NAME'].\kinaf\routes::url_to("question","view",$this->question)."#answer".$this->id,$this->question->title,$params['sitename']),'text/html');
+				
+				$mailer->send($message);
+				
+			}
+		}
+		
 	}
 ?>

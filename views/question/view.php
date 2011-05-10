@@ -18,7 +18,7 @@
 	
 	<div class="content">
 	
-		<?=$question->content;?>
+		<?=Markdown($question->content);?>
 		
 	</div>
 	
@@ -26,11 +26,15 @@
 	
 	<span class="user_bar_info">
 		<div class="img">
-			<img src="<?=$question->user->get_gravatar("30");?>" />
+			<img src="<?=$question->user->get_gravatar("40");?>" />
 		</div>
 		<div class="user">
-			<?=$question->user;?><br />
-			<?=$question->user->getPoints();?>
+			<div style="margin-bottom:8px;">
+				<?=$question->user;?>
+			</div>
+			<span class="user_points">
+				<?=sprintf(ngettext("%s point","%s points",$question->user->getPoints()),$question->user->getPoints());?>
+			</span>
 		</div>
 	</span>
 	
@@ -92,7 +96,14 @@
 	<? if( $connected ): ?>
 
 	<form class="answer_form" onsubmit="return false">
-		<textarea id="answer_content" name="answer_content"></textarea>
+		
+		<div id="wmd-editor" class="wmd-panel">
+			<div id="wmd-button-bar"></div>
+			<textarea id="wmd-input" name="answer_content"></textarea>
+		</div>
+		<span class="separator"><?=_("Prévisualisation");?></span>
+		<div id="wmd-preview" class="wmd-panel"></div>
+
 		<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
 	</form>
 
@@ -108,7 +119,12 @@
 
 <? endif; ?>
 
+<div id="dialog" title="Modification">
+	<textarea id="editPop" style="width: 100%"></textarea>
+</div>
+
 <script>
+
 <? if($connected): ?>
 	$(".questionVote").click(function(){
 		$.post("<?=\kinaf\routes::url_to("question","vote",$question);?>",{"type":$(this).attr('rel')},function(data){
@@ -181,11 +197,6 @@ function reloadAnswers(){
 
 reloadAnswers();
 
-$("#answer_content").wysiwyg({
-	initialContent: "",
-	autoGrow: true
-});
-
 $(".primaryAction").click(function(){
 	$.post("<?=\kinaf\routes::url_to("answer","new",$question);?>",$(".answer_form").serialize(),function(data){
 		if(data == "ok"){
@@ -210,19 +221,18 @@ $(".ask_add").live('click',function(){
 	$("#"+$(this).attr('rel')).slideDown();
 });
 
-$(".deletable").live("mouseover mouseout",function(event){
-	
-	if( event.type == "mouseover"){
-		
-		$(this).find(".deletable_handle:first").attr('style', 'display: inline !important');
-		
-	} else {
-	
-		$(this).find(".deletable_handle:first").hide();
-	
-	}
+$("#dialog").dialog({
+	autoOpen: false,
+	modal: true,
+	width: 600,
+	height: 400
 	
 });
+
+$(".editAnswer").live('click',function(){
+	$("#dialog").dialog('open');
+});
+
 
 $(".deletable_handle").live('click',function(){
 	switch($(this).attr('type')){
@@ -231,7 +241,7 @@ $(".deletable_handle").live('click',function(){
 				location.href = "<?=\kinaf\routes::url_to("home","index");?>";
 			});
 		break;
-		case 'reponse':
+		case 'answer':
 			$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
 				reloadAnswers();
 			});
@@ -240,3 +250,11 @@ $(".deletable_handle").live('click',function(){
 });
 
 </script>
+
+<?
+if($connected && !$question->isAnswered() ){
+	?>
+	<script type="text/javascript" src="/js/jquery.wmd.min.js"></script>
+	<?
+}
+?>

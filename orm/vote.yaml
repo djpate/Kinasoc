@@ -4,7 +4,8 @@ fields:
   answer:
     type: object
   accepted:
-    type: int
+    type: object
+    class: answer
   value: 
     type: int
   user: 

@@ -3,10 +3,9 @@ if(count($answers)>0):
 	?>
 	<span class="separator"><?=sprintf(ngettext("1 réponse","%s réponses",count($answers)),count($answers));?></span>
 	<?
-	foreach($answers as $answer):
+	foreach($answers as $id => $answer):
 		?>
-		<div class="answer_row <? if( $connected && $answer->isDeletable($connected_user) ){ echo "deletable"; } ;?> <?if($answer->isAccepted()){echo "accepted";}?>">
-			<span class="deletable_handle" type="reponse" rel="<?=$answer->id;?>"></span>
+		<div id="answer<?=$answer->id;?>" class="answer_row <?if($id==0){echo "noborder ";}?> <?if($answer->isAccepted()){echo "accepted";}?>">
 			<div class="answer_vote">
 				<?
 				if($answer->isAccepted()):
@@ -26,18 +25,40 @@ if(count($answers)>0):
 				</span>
 				<br />
 				<img src="/images/thumbs_down.png" class="link answerVote" rel="down" id="<?=$answer->id;?>" />
+				<br />
+				<? 
+				if( $connected && $answer->isEditable($connected_user) ):
+					?>
+					<img title="<?=_("Editer cette réponse");?>" src="/images/edit.png" class="link editAnswer" id="<?=$answer->id;?>" />
+					<br />
+					<?
+				endif;
+				?>
+				<? 
+				if( $connected && $answer->isDeletable($connected_user) ):
+					?>
+					<img title="<?=_("Supprimer cette réponse");?>" src="/images/delete_bug.png" class="link deletable_handle" type="answer" rel="<?=$answer->id;?>" />
+					<?
+				endif;
+				?>
 			</div>
 			<div class="answer_content">
-				<?=$answer->content;?>
+				<div class="view_<?=$answer->id;?>">
+					<?=Markdown($answer->content);?>
+				</div>
 			</div>
 			<div style="clear:both"></div>
 			<span class="user_bar_info">
 				<div class="img">
-					<img src="<?=$answer->user->get_gravatar("30");?>" />
+					<img src="<?=$answer->user->get_gravatar("40");?>" />
 				</div>
 				<div class="user">
-					<?=$answer->user;?><br />
-					<?=$answer->user->getPoints();?>
+					<div style="margin-bottom:8px;">
+						<?=$answer->user;?>
+					</div>
+					<span class="user_points">
+						<?=sprintf(ngettext("%s point","%s points",$answer->user->getPoints()),$answer->user->getPoints());?>
+					</span>
 				</div>
 			</span>
 			<div style="clear:both"></div>
@@ -55,8 +76,11 @@ if(count($answers)>0):
 			endforeach;
 			?>
 			
+			<? if($connected): ?>
+			
 			<div class="comment">
 				<span class="ask_add link bold" rel="answer_<?=$answer->id;?>">
+					<img src="/images/comment.png" align="absmiddle"/>
 					<?=_("Ajouter un commentaire");?>
 				</span>
 				<form class="commentform" onsubmit="return false" id="answer_<?=$answer->id;?>">
@@ -73,6 +97,16 @@ if(count($answers)>0):
 					<div style="clear:both"></div>
 				</form>
 			</div>
+			
+			<? else: ?>
+			
+			<div style="text-align:center;font-size:12px;margin:10px 0;">
+				<a href="<?=\kinaf\routes::url_to("user","login");?>">
+					<?=_("Pour ajouter un commentaire vous devez être connecté");?>
+				</a>
+			</div>
+			
+			<? endif; ?>
 		</div>
 		<?
 	endforeach;

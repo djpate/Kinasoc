@@ -7,10 +7,15 @@
       <p class="formHint"></p>
     </div>
   
-    <div class="ctrlHolder forceLeftDiv">
-      <label for="question"><?=_("Votre question");?></label>
-      <textarea class="required" name="content" rows="35" cols="25" minlength="<?=$params['minQuestionContent'];?>"></textarea>
-      <p class="formHint"></p>
+    <div class="wmd-container">
+		<div id="wmd-editor" class="wmd-panel">
+			<div id="wmd-button-bar"></div>
+			<textarea id="wmd-input" name="content" class="required" minlength="<?=$params['minQuestionContent'];?>"></textarea>
+			 <p class="formHint"></p>
+		</div>
+		<span class="separator"><?=_("Prévisualisation de votre question");?></span>
+		<div id="wmd-preview" class="wmd-panel"></div>
+		
     </div>
   
     <div class="ctrlHolder">
@@ -26,10 +31,6 @@
 </form>
 <script>
 	$(document).ready(function(){
-		$("textarea").wysiwyg({
-			'initialContent': '',
-			'autoGrow': true
-		});
 		
 		$(".new").validate({
 			submitHandler: function(form){
@@ -59,3 +60,4 @@
 	
 	});
 </script>
+<script type="text/javascript" src="/js/jquery.wmd.min.js"></script>

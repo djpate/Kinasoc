@@ -42,7 +42,7 @@ foreach($questions as $question):
 					<?
 				endforeach;
 				?>
-				<?=$question->ago();?> par <span class="user"><a href="<?=\kinaf\routes::url_to("user","fiche",$question->user);?>"><?=$question->user;?></a></span>
+				<?=$question->ago();?> par <span class="user"><a href="<?=\kinaf\routes::url_to("user","fiche",$question->user);?>"><?=$question->user;?></a></span> <span class="user_points"><?=sprintf(ngettext("%s point","%s points",$question->user->getPoints()),$question->user->getPoints());?></span>
 			</div>
 			<div style="clear:both"></div>
 		</div>

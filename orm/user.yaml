@@ -17,5 +17,11 @@ fields:
     type: int
   website:
     type: varchar
+  notificationAnswer:
+    type: int
+  notificationQuestion:
+    type: int
+  newsletter:
+    type: int
 constraints:
   id: { integer: 'true' }

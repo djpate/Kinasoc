@@ -156,7 +156,11 @@
 			$q = $this->pdo->query("select event,date,vote from points where User = ".$this->id." order by date desc");
 			if( $q->rowCount() > 0) {
 				foreach($q as $row){
-					array_push($ret,array("event"=>new points_event($row['event']),"date"=>$row['date']));
+					if( is_numeric($row['vote']) ){
+						array_push($ret,array("event"=>new points_event($row['event']),"date"=>$row['date'],"vote"=>new vote($row['vote'])));
+					} else {
+						array_push($ret,array("event"=>new points_event($row['event']),"date"=>$row['date']));
+					}
 				}
 			}
 			return $ret;

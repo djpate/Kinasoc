@@ -18,7 +18,7 @@
 			submitHandler: function(form){
 				$.post("<?=\kinaf\routes::url_to("user","save_login");?>",$("#register").serialize(),function(data){
 					if(data=="ok"){
-						location.href = "<?=\kinaf\routes::url_to("home","index");?>";
+						location.href = "<?=$_SESSION['loginCallback'];?>";
 					}
 				});
 			},

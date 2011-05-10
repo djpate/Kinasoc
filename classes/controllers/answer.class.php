@@ -28,6 +28,7 @@ namespace controllers;
 					$a->creationDate = date("d/m/Y G:i:s");
 					$a->content = $_REQUEST['answer_content'];
 					$a->save();
+					$a->checkNotifications($this->mailer,$this->params);
 					echo "ok";
 				else:
 					echo "err_2"; // not connected

@@ -2,9 +2,9 @@
 	<h2 class="tab_title"><?=$user->login;?></h2>
 	<ul>
 		<li class="tabs selected" rel="info" index="1"><?=_("Information");?></li>
-		<li class="tabs" rel="reputation" index="2"><?=_("Réputation");?></li>
-		<li class="tabs" rel="questions" index="3"><?=_("Questions");?></li>
-		<li class="tabs" rel="answers" index="4"><?=_("Réponses");?></li>
+		<li class="tabs" rel="reputation" index="2"><?=_("Réputation");?> (<?=$user->getPoints();?>)</li>
+		<li class="tabs" rel="questions" index="3"><?=_("Questions");?> (<?=$user->nbQuestions();?>)</li>
+		<li class="tabs" rel="answers" index="4"><?=_("Réponses");?> (<?=$user->nbAnswers();?>)</li>
 		<?/*<li class="tabs" rel="favorites" index="5">favorites</li>*/?>
 	</ul>
 	<div style="clear:both"></div>
@@ -62,6 +62,14 @@
 					<div style="clear:both"></div>
 				</div>
 				
+				<div class="info_row">
+					<? if($user == $connected_user): ?>
+						<a href="<?=\kinaf\routes::url_to("user","update");?>">
+							<span class="action_button"><?=_("Mettre à jour votre profil");?></span>
+						</a>
+					<? endif; ?>
+				</div>
+				
 			</div>
 			<div style="clear:both"></div>
 		</div>
@@ -72,13 +80,37 @@
 				$event = $point['event'];
 				?>
 				<div class="reputation_row">
-					<?
-					if( $event->points > 0){ ?>
+					
+					<span class="labeldate"><?=\application\helper::ago($point['date']);?></span>
+					
+					<? if( $event->points > 0 ): ?>
 						<span class="powerup">+ <?=$event->points;?></span>
-					<? } else { ?>
+					<? else: ?>
 						<span class="powerdown">- <?=$event->points;?></span>
-					<? } ?>
-					<span class="labelpoint"><?=$event->label;?></span>
+					<? endif; ?>
+					
+					
+					<? if ( array_key_exists("vote",$point) ): ?>
+					
+						<?
+						
+						$vote = $point['vote'];
+						
+						if(is_object($vote->question)):
+							$question = $vote->question;
+						elseif(is_object($vote->anwser)):
+							$question = $vote->answer->question;
+						else:
+							$question = $vote->accepted->question;
+						endif;
+						
+						?>
+					
+						<span class="labelquestion"><a title="<?=$event->label;?>" href="<?=\kinaf\routes::url_to("question","view",$question);?>"><?=$question->title;?></a></span>
+					<? else: ?>
+						<span class="labelquestion"><?=$event->label;?></span>
+					<? endif; ?>
+					
 				</div>
 			<? } ?>
 		</div>

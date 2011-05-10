@@ -1,15 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-
-Name       : Regeneracy   
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20100529
-
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="keywords" content="" />
@@ -22,19 +11,19 @@ Released   : 20100529
 	<link href="/css/jquery.showMessage.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/tag-it.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
-	<link href="/css/jquery.wysiwyg.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/openid.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/openid-shadow.css" rel="stylesheet" type="text/css" media="screen" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<link href="/css/wmd.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/uni-form.jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.showMessage.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.wysiwyg.js"></script>
 	<script type="text/javascript" src="/js/jquery.validate.pack.js"></script>
 	<script type="text/javascript" src="/js/tag-it.js"></script>
 	<script type="text/javascript" src="/js/openid-jquery.js"></script>
 	<script type="text/javascript" src="/js/openid-en.js"></script>
 	<script type="text/javascript" src="/js/kinasoc.js"></script>
+	<script type="text/javascript" src="/js/showdown.js"></script>
 </head>
 <body>
 <div id="wrapper">

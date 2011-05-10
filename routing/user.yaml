@@ -21,6 +21,12 @@ user:
     url: /user/logout
   account:
     url: /user/account
+  update:
+    url: /user/account/update
+  save:
+    url: /user/account/save
+  close:
+    url: /user/close
   fiche:
     url: /user/{id}/{login}
     reg: 
