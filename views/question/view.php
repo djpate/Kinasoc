@@ -16,7 +16,7 @@
 	
 	<span class="separator"></span>
 	
-	<div class="content">
+	<div id="question_content" class="content">
 	
 		<?=Markdown($question->content);?>
 		
@@ -25,12 +25,28 @@
 	<div style="clear:both"></div>
 	
 	<span class="user_bar_info">
+	
+		<div style="float:left;padding:10px;font-size:11px;color:#787878;cursor:pointer">
+			<? if($question->isEditable($connected_user)): ?>
+				<a class="editQuestion" type="question">
+					<img src="/images/edit.png" height="20" align="absmiddle"/>
+					Modifier
+				</a>
+			<? endif; ?>
+			<? if($question->isDeletable($connected_user)): ?>
+				<a class="deletable_handle" type="question">
+					<img src="/images/delete_bug.png" height="20" align="absmiddle"/>
+					Supprimer
+				</a>
+			<? endif; ?>
+		</div>
+	
 		<div class="img">
 			<img src="<?=$question->user->get_gravatar("40");?>" />
 		</div>
 		<div class="user">
 			<div style="margin-bottom:8px;">
-				<?=$question->user;?>
+				<a href="<?=\kinaf\routes::url_to("user","fiche",$question->user);?>"><?=$question->user;?></a>
 			</div>
 			<span class="user_points">
 				<?=sprintf(ngettext("%s point","%s points",$question->user->getPoints()),$question->user->getPoints());?>
@@ -115,9 +131,13 @@
 
 <? endif; ?>
 
-<div id="dialog" title="Modification">
+<div id="dialog_answer" title="<?=_("Modification");?>">
 	<input type="hidden" id="update_answer_id" />
-	<textarea id="editPop" style="width: 100%; height: 350px"></textarea>
+	<textarea id="editAnswer" style="width: 100%; height: 350px"></textarea>
+</div>
+
+<div id="dialog_question" title="<?=_("Modification");?>">
+	<textarea id="editQuestion" style="width: 100%; height: 350px"></textarea>
 </div>
 
 <script>
@@ -218,7 +238,7 @@ $(".ask_add").live('click',function(){
 	$("#"+$(this).attr('rel')).slideDown();
 });
 
-$("#dialog").dialog({
+$("#dialog_answer").dialog({
 	autoOpen: false,
 	modal: true,
 	width: 600,
@@ -228,9 +248,27 @@ $("#dialog").dialog({
 			$(this).dialog("close");
 		},
 		"<?=_("Enregistrer");?>": function() {
-			$.post("/answer/"+$("#update_answer_id").val()+"/update",{'content':$("#editPop").val()},function(){
-				$("#dialog").dialog('close');
+			$.post("/answer/"+$("#update_answer_id").val()+"/update",{'content':$("#editAnswer").val()},function(){
+				$("#dialog_answer").dialog('close');
 				reloadAnswers();
+			});
+		}
+	}
+});
+
+$("#dialog_question").dialog({
+	autoOpen: false,
+	modal: true,
+	width: 600,
+	height: 600,
+	buttons: {
+		"<?=_("Annuler");?>": function() {
+			$(this).dialog("close");
+		},
+		"<?=_("Enregistrer");?>": function() {
+			$.post("/question/<?=$question->id;?>/update",{'content':$("#editQuestion").val()},function(data){
+				$("#dialog_question").dialog('close');
+				$("#question_content").html(data);
 			});
 		}
 	}
@@ -239,8 +277,15 @@ $("#dialog").dialog({
 $(".editAnswer").live('click',function(){
 	$("#update_answer_id").val($(this).attr('id'));
 	$.get("/answer/"+$(this).attr('id'),function(data){
-		$("#editPop").val(data);
-		$("#dialog").dialog('open');
+		$("#editAnswer").val(data);
+		$("#dialog_answer").dialog('open');
+	});
+});
+
+$(".editQuestion").click(function(){
+	$.get("/question/<?=$question->id;?>",function(data){
+		$("#editQuestion").val(data);
+		$("#dialog_question").dialog('open');
 	});
 });
 
@@ -248,14 +293,18 @@ $(".editAnswer").live('click',function(){
 $(".deletable_handle").live('click',function(){
 	switch($(this).attr('type')){
 		case 'question':
-			$.post("<?=\kinaf\routes::url_to("question","delete",$question);?>",function(data){
-				location.href = "<?=\kinaf\routes::url_to("home","index");?>";
-			});
+			if(confirm("Etes vous sur de vouloir supprimer cette question ?")){
+				$.post("<?=\kinaf\routes::url_to("question","delete",$question);?>",function(data){
+					location.href = "<?=\kinaf\routes::url_to("home","index");?>";
+				});
+			}
 		break;
 		case 'answer':
-			$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
-				reloadAnswers();
-			});
+			if(confirm("Etes vous sur de vouloir supprimer cette réponse ?")){
+				$.post("<?=\kinaf\routes::url_to("answer","delete");?>",{'id':$(this).attr('rel')},function(data){
+					reloadAnswers();
+				});
+			}
 		break;
 	}
 });
@@ -264,7 +313,11 @@ $("#answer_content").wmd({
 	"preview": true
 });
 
-$("#editPop").wmd({
+$("#editQuestion").wmd({
+	"preview": true
+});
+
+$("#editAnswer").wmd({
 	"preview": true
 });
 

@@ -20,3 +20,11 @@ question:
     url: /question/search
   search_ajax:
     url: /question/search-ajax
+  fetch:
+    url: /question/{id}
+    reg:
+      - ([0-9]+)
+  update:
+    url: /question/{id}/update
+    reg:
+      - ([0-9]+)

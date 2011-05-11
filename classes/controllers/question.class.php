@@ -148,6 +148,38 @@ use \application\tag as tag;
 			endif;
 		}
 		
+		public function fetchAction($id){
+			$q = new \application\question($id);
+			if($this->connected):
+				if($q->isEditable($this->connected_user)):
+					echo $q->content;
+				else:
+					header('HTTP/1.1 403 Forbidden');
+					exit;
+				endif;
+			else:
+				header('HTTP/1.1 403 Forbidden');
+				exit;
+			endif;
+		}
+		
+		public function updateAction($id){
+			$q = new \application\question($id);
+			if($this->connected):
+				if($q->isEditable($this->connected_user)):
+					$q->content = $_REQUEST['content'];
+					$q->save();
+					echo Markdown($q->content);
+				else:
+					header('HTTP/1.1 403 Forbidden');
+					exit;
+				endif;
+			else:
+				header('HTTP/1.1 403 Forbidden');
+				exit;
+			endif;
+		}
+		
 	} 
 
 ?>

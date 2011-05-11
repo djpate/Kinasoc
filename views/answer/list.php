@@ -50,11 +50,15 @@ if(count($answers)>0):
 			<div style="clear:both"></div>
 			<span class="user_bar_info">
 				<div class="img">
-					<img src="<?=$answer->user->get_gravatar("40");?>" />
+					<a href="<?=\kinaf\routes::url_to("user","fiche",$answer->user);?>">
+						<img src="<?=$answer->user->get_gravatar("40");?>" />
+					</a>
 				</div>
 				<div class="user">
 					<div style="margin-bottom:8px;">
-						<?=$answer->user;?>
+						<a href="<?=\kinaf\routes::url_to("user","fiche",$answer->user);?>">
+							<?=$answer->user;?>
+						</a>
 					</div>
 					<span class="user_points">
 						<?=sprintf(ngettext("%s point","%s points",$answer->user->getPoints()),$answer->user->getPoints());?>
