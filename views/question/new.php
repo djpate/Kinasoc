@@ -7,15 +7,8 @@
       <p class="formHint"></p>
     </div>
   
-    <div class="wmd-container">
-		<div id="wmd-editor" class="wmd-panel">
-			<div id="wmd-button-bar"></div>
-			<textarea id="wmd-input" name="content" class="required" minlength="<?=$params['minQuestionContent'];?>"></textarea>
-			 <p class="formHint"></p>
-		</div>
-		<span class="separator"><?=_("Prévisualisation de votre question");?></span>
-		<div id="wmd-preview" class="wmd-panel"></div>
-		
+    <div class="wmdcontainer">
+		<textarea id="wmd-input" name="content" class="required" minlength="<?=$params['minQuestionContent'];?>"></textarea>
     </div>
   
     <div class="ctrlHolder">
@@ -59,5 +52,8 @@
 		});
 	
 	});
+	
+	$("#wmd-input").wmd({
+		preview: true
+	});
 </script>
-<script type="text/javascript" src="/js/jquery.wmd.min.js"></script>

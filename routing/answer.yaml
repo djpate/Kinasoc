@@ -13,3 +13,11 @@ answer:
     url: /answer/list/{id}
     reg:
       - ([0-9]+)
+  fetch:
+    url: /answer/{id}
+    reg: 
+      - ([0-9]+)
+  update:
+    url: /answer/{id}/update
+    reg: 
+      - ([0-9]+)

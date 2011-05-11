@@ -56,6 +56,7 @@
 	<? if ( $connected ) : ?>
 	<div class="comment">
 		<span class="ask_add link bold" rel="question_comm">
+			<img src="/images/comment.png" align="absmiddle">
 			<?=("Ajouter un commentaire");?>
 		</span>
 		<form class="commentform" onsubmit="return false" id="question_comm">
@@ -97,12 +98,7 @@
 
 	<form class="answer_form" onsubmit="return false">
 		
-		<div id="wmd-editor" class="wmd-panel">
-			<div id="wmd-button-bar"></div>
-			<textarea id="wmd-input" name="answer_content"></textarea>
-		</div>
-		<span class="separator"><?=_("Prévisualisation");?></span>
-		<div id="wmd-preview" class="wmd-panel"></div>
+		<textarea id="answer_content" name="answer_content"></textarea>
 
 		<div class="buttonHolder"><button type="submit" class="primaryAction"><?=_("Ajouter ma réponse");?></button></div>
 	</form>
@@ -120,7 +116,8 @@
 <? endif; ?>
 
 <div id="dialog" title="Modification">
-	<textarea id="editPop" style="width: 100%"></textarea>
+	<input type="hidden" id="update_answer_id" />
+	<textarea id="editPop" style="width: 100%; height: 350px"></textarea>
 </div>
 
 <script>
@@ -225,12 +222,26 @@ $("#dialog").dialog({
 	autoOpen: false,
 	modal: true,
 	width: 600,
-	height: 400
-	
+	height: 600,
+	buttons: {
+		"<?=_("Annuler");?>": function() {
+			$(this).dialog("close");
+		},
+		"<?=_("Enregistrer");?>": function() {
+			$.post("/answer/"+$("#update_answer_id").val()+"/update",{'content':$("#editPop").val()},function(){
+				$("#dialog").dialog('close');
+				reloadAnswers();
+			});
+		}
+	}
 });
 
 $(".editAnswer").live('click',function(){
-	$("#dialog").dialog('open');
+	$("#update_answer_id").val($(this).attr('id'));
+	$.get("/answer/"+$(this).attr('id'),function(data){
+		$("#editPop").val(data);
+		$("#dialog").dialog('open');
+	});
 });
 
 
@@ -249,12 +260,12 @@ $(".deletable_handle").live('click',function(){
 	}
 });
 
-</script>
+$("#answer_content").wmd({
+	"preview": true
+});
 
-<?
-if($connected && !$question->isAnswered() ){
-	?>
-	<script type="text/javascript" src="/js/jquery.wmd.min.js"></script>
-	<?
-}
-?>
+$("#editPop").wmd({
+	"preview": true
+});
+
+</script>

@@ -24,6 +24,7 @@
 	<script type="text/javascript" src="/js/openid-en.js"></script>
 	<script type="text/javascript" src="/js/kinasoc.js"></script>
 	<script type="text/javascript" src="/js/showdown.js"></script>
+	<script type="text/javascript" src="/js/jquery.wmd.min.js"></script>
 </head>
 <body>
 <div id="wrapper">

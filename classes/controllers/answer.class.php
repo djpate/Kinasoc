@@ -87,6 +87,37 @@ namespace controllers;
 			endif;
 		}
 		
+		public function fetchAction($id){
+			$a = new \application\answer($id);
+			if($this->connected):
+				if($a->isEditable($this->connected_user)):
+					echo $a->content;
+				else:
+					header('HTTP/1.1 403 Forbidden');
+					exit;
+				endif;
+			else:
+				header('HTTP/1.1 403 Forbidden');
+				exit;
+			endif;
+		}
+		
+		public function updateAction($id){
+			$a = new \application\answer($id);
+			if($this->connected):
+				if($a->isEditable($this->connected_user)):
+					$a->content = $_REQUEST['content'];
+					$a->save();
+				else:
+					header('HTTP/1.1 403 Forbidden');
+					exit;
+				endif;
+			else:
+				header('HTTP/1.1 403 Forbidden');
+				exit;
+			endif;
+		}
+		
 	} 
 
 ?>
